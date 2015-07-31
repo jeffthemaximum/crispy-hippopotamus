@@ -24,6 +24,10 @@ target_metadata = current_app.extensions['migrate'].db.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> my-temporary-work
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
 
@@ -42,6 +46,10 @@ def run_migrations_offline():
     with context.begin_transaction():
         context.run_migrations()
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> my-temporary-work
 def run_migrations_online():
     """Run migrations in 'online' mode.
 
@@ -49,6 +57,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
+<<<<<<< HEAD
     engine = engine_from_config(
                 config.get_section(config.config_ini_section),
                 prefix='sqlalchemy.',
@@ -59,6 +68,16 @@ def run_migrations_online():
                 connection=connection,
                 target_metadata=target_metadata
                 )
+=======
+    engine = engine_from_config(config.get_section(config.config_ini_section),
+                                prefix='sqlalchemy.',
+                                poolclass=pool.NullPool)
+
+    connection = engine.connect()
+    context.configure(connection=connection,
+                      target_metadata=target_metadata,
+                      **current_app.extensions['migrate'].configure_args)
+>>>>>>> my-temporary-work
 
     try:
         with context.begin_transaction():

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 User {{ user.username }} has joined.
+=======
+User {{ user.username }} has joined.
+>>>>>>> my-temporary-work
