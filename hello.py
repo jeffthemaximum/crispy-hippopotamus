@@ -10,7 +10,7 @@ from flask.ext.wtf import Form
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Shell
-from flask.ext.mail import Mail
+from flask.ext.mail import Mail, Message
 
 import pudb
 import os
@@ -59,13 +59,20 @@ class User(db.Model):
 	def __repr__(self):
 		return '<User %r>' % self.username
 
+def send_async_email(app, msg):
+	with app.app_context():
+		mail.send(msg)
+
+
 #template must be given without the extension                                                              
 def send_email(to, subject, template, **kwargs):
 	msg = Message(app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + subject,
 				sender=app.config['FLASKY_MAIL_SENDER'], recipients=[to])
 	msg.body = render_template(template + '.txt', **kwargs)
 	msg.html = render_template(template + '.html', **kwargs)
-	mail.send(msg)
+	thr = Thread(target=send_async_email, args=[app, msg])
+	thr.start()
+	return thr
 
 
 def make_shell_context():
@@ -117,5 +124,5 @@ def user(name):
 
 
 if __name__ == '__main__':
-	manager.run() #doesn't use debug mode or auto restart
-    #app.run(debug=True)
+	#manager.run() #doesn't use debug mode or auto restart
+    app.run(debug=True)
