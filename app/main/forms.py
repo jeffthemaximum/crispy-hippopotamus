@@ -1,4 +1,5 @@
 from flask.ext.wtf import Form
+<<<<<<< HEAD
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
     SubmitField
 from wtforms.validators import Required, Length, Email, Regexp
@@ -58,3 +59,12 @@ class PostForm(Form):
 class CommentForm(Form):
     body = StringField('Enter your comment', validators=[Required()])
     submit = SubmitField('Submit')
+=======
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required
+
+
+class NameForm(Form):
+	name = StringField('Whats yur namez?', validators=[Required()])
+	submit = SubmitField('Submit')
+>>>>>>> more-temp

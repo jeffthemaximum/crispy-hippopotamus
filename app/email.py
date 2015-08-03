@@ -3,12 +3,20 @@ from flask import current_app, render_template
 from flask.ext.mail import Message
 from . import mail
 
+<<<<<<< HEAD
 
 def send_async_email(app, msg):
     with app.app_context():
         mail.send(msg)
 
 
+=======
+def send_async_email(app, msg):
+	with app.app_context():
+		mail.send(msg)
+
+#template must be given without the extension                                                              
+>>>>>>> more-temp
 def send_email(to, subject, template, **kwargs):
     app = current_app._get_current_object()
     msg = Message(app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + ' ' + subject,
@@ -17,4 +25,8 @@ def send_email(to, subject, template, **kwargs):
     msg.html = render_template(template + '.html', **kwargs)
     thr = Thread(target=send_async_email, args=[app, msg])
     thr.start()
+<<<<<<< HEAD
     return thr
+=======
+    return thr
+>>>>>>> more-temp

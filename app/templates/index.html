@@ -10,6 +10,7 @@
 {% block page_content %}
 <div class="page-header">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <h1>Hello, {% if current_user.is_authenticated() %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
 </div>
 <div>
@@ -39,6 +40,15 @@
 {% endblock %}
 =======
 	<h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
+=======
+	<h1>
+    Hello,
+    {% if current_user.is_authenticated() %}
+        {{ current_user.username }}
+    {% else %}
+        Stranger
+    {% endif %}!</h1>
+>>>>>>> more-temp
 	{% if not known %}
 		<p>Pleased to meet you!</p>
 	{% else %}
@@ -52,4 +62,7 @@
 	<p>That was {{ moment(current_time).fromNow(refresh=True) }}.</p>
 </div>
 {% endblock %}
+<<<<<<< HEAD
 >>>>>>> my-temporary-work
+=======
+>>>>>>> more-temp

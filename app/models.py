@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from datetime import datetime
 import hashlib
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -16,12 +17,21 @@ class Permission:
     WRITE_ARTICLES = 0x04
     MODERATE_COMMENTS = 0x08
     ADMINISTER = 0x80
+=======
+from . import db
+from . import login_manager
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask.ext.login import UserMixin
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from flask import current_app
+>>>>>>> more-temp
 
 
 class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
+<<<<<<< HEAD
     default = db.Column(db.Boolean, default=False, index=True)
     permissions = db.Column(db.Integer)
     users = db.relationship('User', backref='role', lazy='dynamic')
@@ -47,10 +57,15 @@ class Role(db.Model):
             db.session.add(role)
         db.session.commit()
 
+=======
+    users = db.relationship('User', backref='role', lazy='dynamic')
+
+>>>>>>> more-temp
     def __repr__(self):
         return '<Role %r>' % self.name
 
 
+<<<<<<< HEAD
 class Follow(db.Model):
     __tablename__ = 'follows'
     follower_id = db.Column(db.Integer, db.ForeignKey('users.id'),
@@ -64,10 +79,17 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
+=======
+class User(UserMixin, db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db. String(64), unique=True, index=True)
+>>>>>>> more-temp
     username = db.Column(db.String(64), unique=True, index=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
+<<<<<<< HEAD
     name = db.Column(db.String(64))
     location = db.Column(db.String(64))
     about_me = db.Column(db.Text())
@@ -129,6 +151,10 @@ class User(UserMixin, db.Model):
                 self.email.encode('utf-8')).hexdigest()
         self.followed.append(Follow(followed=self))
 
+=======
+
+    # makes password a write-only property
+>>>>>>> more-temp
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')
@@ -185,6 +211,7 @@ class User(UserMixin, db.Model):
         if data.get('change_email') != self.id:
             return False
         new_email = data.get('new_email')
+<<<<<<< HEAD
         if new_email is None:
             return False
         if self.query.filter_by(email=new_email).first() is not None:
@@ -266,10 +293,19 @@ class User(UserMixin, db.Model):
             return None
         return User.query.get(data['id'])
 
+=======
+        if self.query.filter_by(email=new_email) is None:
+            return False
+        self.email = new_email
+        db.session.add(self)
+        return True
+
+>>>>>>> more-temp
     def __repr__(self):
         return '<User %r>' % self.username
 
 
+<<<<<<< HEAD
 class AnonymousUser(AnonymousUserMixin):
     def can(self, permissions):
         return False
@@ -382,3 +418,9 @@ class Comment(db.Model):
 
 
 db.event.listen(Comment.body, 'set', Comment.on_changed_body)
+=======
+@login_manager.user_loader
+def load_user(user_id):
+    # the return value is a user object, or None
+    return User.query.get(int(user_id))
+>>>>>>> more-temp

@@ -1,16 +1,16 @@
 from datetime import datetime
-from flask import Flask, render_template, session, redirect, url_for, flash
+#from flask import Flask, render_template, session, redirect, url_for, flash
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 
 from flask.ext.script import Manager
-from flask.ext.bootstrap import Bootstrap
-from flask.ext.moment import Moment
+#from flask.ext.bootstrap import Bootstrap
+#from flask.ext.moment import Moment
 from flask.ext.wtf import Form
-from flask.ext.sqlalchemy import SQLAlchemy
+#from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Shell
-from flask.ext.mail import Mail, Message
+#from flask.ext.mail import Mail, Message
 
 import pudb
 import os
@@ -37,10 +37,6 @@ mail = Mail(app)
 migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
-class NameForm(Form):
-	name = StringField('Whats yur namez?', validators=[Required()])
-	submit = SubmitField('Submit')
-
 class Role(db.Model):
 	__tablename__ = 'roles'
 	id = db.Column(db.Integer, primary_key=True)
@@ -59,63 +55,10 @@ class User(db.Model):
 	def __repr__(self):
 		return '<User %r>' % self.username
 
-def send_async_email(app, msg):
-	with app.app_context():
-		mail.send(msg)
-
-
-#template must be given without the extension                                                              
-def send_email(to, subject, template, **kwargs):
-	msg = Message(app.config['FLASKY_MAIL_SUBJECT_PREFIX'] + subject,
-				sender=app.config['FLASKY_MAIL_SENDER'], recipients=[to])
-	msg.body = render_template(template + '.txt', **kwargs)
-	msg.html = render_template(template + '.html', **kwargs)
-	thr = Thread(target=send_async_email, args=[app, msg])
-	thr.start()
-	return thr
-
 
 def make_shell_context():
 	return dict(app=app, db=db, User=User, Role=Role)
 manager.add_command("shell", Shell(make_context=make_shell_context))
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('500.html'), 500
-
-
-@app.route('/', methods=['POST', 'GET'])
-def index():
-	form = NameForm()
-	if form.validate_on_submit():
-		old_name = session.get('name')
-		user = User.query.filter_by(username=form.name.data).first()
-		if old_name is not None and old_name != form.name.data:
-			flash('Lookz likez youz changd ur namez!')
-		if user is None:
-			user = User(username = form.name.data)
-			db.session.add(user)
-			session['known'] = False
-			if app.config['FLASKY_ADMIN']:
-				send_email(app.config['FLASKY_ADMIN'], 'New User',
-							'mail/new_user', user=user)
-		else:
-			session['known'] = True
-		session['name'] = form.name.data
-		form.name.data = ''
-		db.session.commit()
-		return redirect(url_for('index'))
-	return render_template('index.html',
-							current_time=datetime.utcnow(),
-							form=form, 
-							name=session.get('name'),
-							known=session.get('known', False)) #session.get() returns a value of none in name is not a key in the session dict
 
 
 @app.route('/user/<name>')

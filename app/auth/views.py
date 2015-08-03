@@ -1,4 +1,5 @@
 from flask import render_template, redirect, request, url_for, flash
+<<<<<<< HEAD
 from flask.ext.login import login_user, logout_user, login_required, \
     current_user
 from . import auth
@@ -24,10 +25,23 @@ def unconfirmed():
     if current_user.is_anonymous() or current_user.confirmed:
         return redirect(url_for('main.index'))
     return render_template('auth/unconfirmed.html')
+=======
+from flask.ext.login import login_user, logout_user, login_required
+from flask.ext.login import current_user
+from . import auth
+from .forms import LoginForm
+from .forms import RegistrationForm
+from .forms import ChangePasswordForm, ChangeEmailAddress
+from .forms import PasswordResetForm, PasswordResetRequestForm
+from ..models import User
+from ..email import send_email
+from .. import db
+>>>>>>> more-temp
 
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+<<<<<<< HEAD
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -36,13 +50,38 @@ def login():
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or password.')
     return render_template('auth/login.html', form=form)
+=======
+    # auth/login.html must be stored inside of the app/templates folder
+    # flask expects templates to me relative to the application's templates f
+    login_form = LoginForm()
+    # if form is valid
+    if login_form.validate_on_submit():
+        # query db by email for user
+        user = User.query.filter_by(email=login_form.email.data).first()
+        # if user exists and password is valid
+        if user is not None and user.verify_password(login_form.password.data):
+            # login user
+            # remember_me.data sets a long term cookie in user browser
+            login_user(user, login_form.remember_me.data)
+            # if login was presented to user to prevent unauthorized login
+            # flask-login will save the original url in the 'next' string
+            return redirect(request.args.get('next') or url_for('main.index'))
+        flash('Invalid username or password')
+    return render_template('auth/login.html', login_form=login_form)
+>>>>>>> more-temp
 
 
 @auth.route('/logout')
 @login_required
 def logout():
+<<<<<<< HEAD
     logout_user()
     flash('You have been logged out.')
+=======
+    # removes and reset user session
+    logout_user()
+    flash("You have been logged out.")
+>>>>>>> more-temp
     return redirect(url_for('main.index'))
 
 
@@ -50,6 +89,7 @@ def logout():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+<<<<<<< HEAD
         user = User(email=form.email.data,
                     username=form.username.data,
                     password=form.password.data)
@@ -61,6 +101,24 @@ def register():
         flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
+=======
+        user = User(
+            email=form.email.data,
+            username=form.username.data,
+            password=form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        token = user.generate_confirmation_token()
+        send_email(
+            user.email,
+            "Confirm Your Account",
+            'auth/email/confirm',
+            user=user,
+            token=token)
+        flash('A confirmation email has been sent to you by email.')
+        return redirect(url_for('auth.login'))
+    return render_template('auth/register.html', registration_form=form)
+>>>>>>> more-temp
 
 
 @auth.route('/confirm/<token>')
@@ -69,9 +127,15 @@ def confirm(token):
     if current_user.confirmed:
         return redirect(url_for('main.index'))
     if current_user.confirm(token):
+<<<<<<< HEAD
         flash('You have confirmed your account. Thanks!')
     else:
         flash('The confirmation link is invalid or has expired.')
+=======
+        flash("You have confirmed your account. Thanks!")
+    else:
+        flash("The confirmation link is invalid or has expired.")
+>>>>>>> more-temp
     return redirect(url_for('main.index'))
 
 
@@ -85,6 +149,24 @@ def resend_confirmation():
     return redirect(url_for('main.index'))
 
 
+<<<<<<< HEAD
+=======
+@auth.before_app_request
+def before_request():
+    if current_user.is_authenticated() \
+            and not current_user.confirmed \
+            and request.endpoint[:5] != 'auth.':
+        return redirect(url_for('auth.unconfirmed'))
+
+
+@auth.route('/unconfirmed')
+def unconfirmed():
+    if current_user.is_anonymous() or current_user.confirmed:
+        return redirect('main.index')
+    return render_template('auth/unconfirmed.html')
+
+
+>>>>>>> more-temp
 @auth.route('/change-password', methods=['GET', 'POST'])
 @login_required
 def change_password():
@@ -102,7 +184,11 @@ def change_password():
 
 @auth.route('/reset', methods=['GET', 'POST'])
 def password_reset_request():
+<<<<<<< HEAD
     if not current_user.is_anonymous():
+=======
+    if current_user.is_anonymous():
+>>>>>>> more-temp
         return redirect(url_for('main.index'))
     form = PasswordResetRequestForm()
     if form.validate_on_submit():
@@ -121,7 +207,11 @@ def password_reset_request():
 
 @auth.route('/reset/<token>', methods=['GET', 'POST'])
 def password_reset(token):
+<<<<<<< HEAD
     if not current_user.is_anonymous():
+=======
+    if current_user.is_anonymous():
+>>>>>>> more-temp
         return redirect(url_for('main.index'))
     form = PasswordResetForm()
     if form.validate_on_submit():
@@ -139,7 +229,11 @@ def password_reset(token):
 @auth.route('/change-email', methods=['GET', 'POST'])
 @login_required
 def change_email_request():
+<<<<<<< HEAD
     form = ChangeEmailForm()
+=======
+    form = ChangeEmailAddress()
+>>>>>>> more-temp
     if form.validate_on_submit():
         if current_user.verify_password(form.password.data):
             new_email = form.email.data
