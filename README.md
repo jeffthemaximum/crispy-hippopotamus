@@ -1,7 +1,5 @@
-Flasky
+Crispy Hippopotamus
 ======
 
-This repository contains the source code examples for my O'Reilly book [Flask Web Development](http://www.flaskbook.com).
-
-The commits and tags in this repository were carefully created to match the sequence in which concepts are presented in the book. Please read the section titled "How to Work with the Example Code" in the book's preface for instructions.
+This is my attempt to create a browser based graphical user interface for xboard compatible chess chess engines, such as gnuchess. Basically, it's a browser-based version of xboard. Hopefully, it'll let you play against some of the best winboard/UCI chess engines right in your browser.
 
