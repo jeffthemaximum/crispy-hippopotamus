@@ -1,14 +1,14 @@
-"""working initial tests with postgres
+"""created usernames, emails, passwords
 
-Revision ID: 470cd21dc2f2
-Revises: 43868430f957
-Create Date: 2015-07-30 19:06:59.612739
+Revision ID: 56721903f8e7
+Revises: None
+Create Date: 2015-08-03 12:24:53.777383
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '470cd21dc2f2'
-down_revision = '43868430f957'
+revision = '56721903f8e7'
+down_revision = None
 
 from alembic import op
 import sqlalchemy as sa
