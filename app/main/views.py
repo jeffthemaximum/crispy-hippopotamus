@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import render_template, redirect, url_for
-from flask import flash, abort
+from flask import flash, abort, request, current_app
 from flask.ext.login import current_user, login_required
 from . import main
 from .. import db
@@ -26,8 +26,20 @@ def posts():
             author=current_user._get_current_object())
         db.session.add(post)
         return redirect(url_for('.posts'))
-    posts = Post.query.order_by(Post.timestamp.desc()).all()
-    return render_template('posts.html', form=form, posts=posts)
+    # page number is obtained from request's query string
+    # which is available at request.args
+    # when a page isn't given, a default of 1 is used
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page,
+        per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
+        error_out=False)
+    posts = pagination.items
+    return render_template(
+        'posts.html',
+        form=form,
+        posts=posts,
+        pagination=pagination)
 
 
 @main.route('/user/<username>')
