@@ -4,9 +4,11 @@ from flask import flash, abort, request, current_app
 from flask.ext.login import current_user, login_required
 from . import main
 from .. import db
-from ..models import User, Role, Post, Permission
+from ..models import User, Role, Post, Permission, Game
 from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
+from .forms import StartChessForm
+import json
 
 
 @main.route('/')
@@ -93,3 +95,61 @@ def edit_profile_admin(id):
     form.location.data = user.location
     form.about_me.data = user.about_me
     return render_template('edit_profile.html', user=user, form=form)
+
+
+@main.route('/chess', methods=['POST', 'GET'])
+@login_required
+def chess():
+    form = StartChessForm()
+    if form.validate_on_submit():
+        game = Game(player_id=current_user.id)
+        db.session.add(game)
+        return render_template('chess.html')
+    current_user_name = current_user.name
+    return render_template(
+        'start_chess.html',
+        form=form,
+        username=current_user_name)
+
+
+@main.route('/getmethod/<jsdata>')
+@login_required
+def get_javascript_data(jsdata):
+    current_game = Game.query.filter_by(id=current_user.id).first()
+    jsdata = jsdata[1:5]
+    inp = jsdata + "\n"
+    print 'sending:', repr(inp)
+
+    # add usr move to list
+    current_game.usr_moves.append(inp[:4])
+    print "usr: ", repr(current_game.usr_moves)
+
+    # send usr move to gnuchess via subprocess
+    # pu.db
+    current_game.proc.stdin.write(inp)
+    current_game.proc.stdin.flush()
+    return jsdata
+
+
+# instantiate a GET route to push python data to js
+@main.route('/getpythondata')
+def get_python_data():
+    current_game = Game.query.filter_by(id=current_user.id).first()
+    print "hello world"
+    for i in range(0, 5):
+        # pu.db
+        line = current_game.proc.stdout.readline().rstrip()
+        print line
+
+    # append cpu move to list
+        if i == 4:
+            cpu_line = line[-4:]
+            current_game.cpu_moves.append(cpu_line)
+            cpu_line = list(cpu_line)
+            cpu_line.insert(2, "-")
+            cpu_line = "".join(cpu_line)
+            pythondata = cpu_line
+            print"json_move: ", repr(pythondata)
+    print "cpu: ", repr(current_game.cpu_moves)
+
+    return json.dumps(pythondata)

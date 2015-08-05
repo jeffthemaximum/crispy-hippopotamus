@@ -1,4 +1,5 @@
 import hashlib
+import subprocess
 from . import db
 from . import login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -187,9 +188,35 @@ class Game(db.Model):
     __tablename__ = 'games'
     id = db.Column(db.Integer, primary_key=True)
     board_state = db.Column(db.String(128))
-    player_id = db.Column(db.Integer, db.ForeighKey('users.id'))
+    player_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     last_played = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    proc = subprocess.Popen(
+        ['/usr/local/bin/gnuchessx'],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE)
+    cpu_moves = []
+    usr_moves = []
+
+    def kill_proc(self):
+        self.proc.kill()
+        return True
+
+    def save_board_state(self):
+        # save board state to db
+        pass
+
+'''
+    def __init__(self, player, **kwargs):
+        super(Game, self).__init__(**kwargs)
+        self.proc = subprocess.Popen(
+            ['/usr/local/bin/gnuchessx'],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE)
+        self.cpu_moves = []
+        self.usr_moves = []
+        self.player_id = player
+'''
 
 
 # is registered as the class of the object that is assinged to
