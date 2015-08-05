@@ -2,13 +2,14 @@
 	"folders":
 	[
 		{
-			"path": "/Users/jeff/Dropbox/flasky_template"
+			"path": "/Users/jeff/Dropbox/projects/flasky"
 		},
 		{
-			"path": "/Users/jeff/Dropbox/projects/flasky"
+			"path": "/Users/jeff/Dropbox/projects/hippopotamus"
 		}
 	],
-     "settings": {
-        "python_interpreter_path": "/usr/bin/python"
-    }
+	"settings":
+	{
+		"python_interpreter_path": "/usr/bin/python"
+	}
 }
