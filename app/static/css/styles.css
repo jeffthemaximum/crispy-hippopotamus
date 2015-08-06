@@ -31,3 +31,7 @@ div.post-content {
     margin-left: 48px;
     min-height: 48px;
 }
+
+div#chess-and-score{
+    clear: none;
+}

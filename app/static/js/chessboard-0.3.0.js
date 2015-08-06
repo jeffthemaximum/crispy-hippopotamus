@@ -146,7 +146,7 @@ function objToFen(obj) {
   if (validPositionObject(obj) !== true) {
     return false;
   }
-
+debugger;
   var fen = '';
 
   var currentRow = 8;

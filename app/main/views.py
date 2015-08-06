@@ -122,16 +122,12 @@ def chess():
         username=current_user_name)
 
 
+# gets moves from user then sends them to gnuchess
 @main.route('/getmethod/<jsdata>')
 @login_required
 def get_javascript_data(jsdata):
-    # get user's active game
-    current_game = Game.query.filter_by(
-        player_id=current_user.id).order_by(Game.id.desc()).first()
-    # get proc id of active game
-    curr_proc_pid = current_game.proc_pid
-    # lookup process in process_dict
-    current_proc = proc_dict[curr_proc_pid]
+    current_game = get_current_game(current_user)
+    current_proc = get_current_proc(current_game)
     jsdata = jsdata[1:5]
     inp = jsdata + "\n"
     print 'sending:', repr(inp)
@@ -150,14 +146,9 @@ def get_javascript_data(jsdata):
 # instantiate a GET route to push python data to js
 @main.route('/getpythondata')
 def get_python_data():
-    # get user's active game
-    current_game = Game.query.filter_by(
-        player_id=current_user.id).order_by(Game.id.desc()).first()
-    # get proc id of active game
-    curr_proc_pid = current_game.proc_pid
-    # lookup process in process_dict
-    current_proc = proc_dict[curr_proc_pid]
-    print "hello world"
+    current_game = get_current_game(current_user)
+    current_proc = get_current_proc(current_game)
+    print "hello from gnuchess"
     for i in range(0, 5):
         # pu.db
         line = current_proc.stdout.readline().rstrip()
@@ -175,3 +166,23 @@ def get_python_data():
     print "cpu: ", repr(current_game.cpu_moves)
 
     return json.dumps(pythondata)
+
+
+@main.route('/killgame')
+@login_required
+def killgame():
+    current_game = get_current_game(current_user)
+    current_game.kill_proc()
+    return redirect(url_for('.user', username=current_user.username))
+
+
+def get_current_game(current_user):
+    return Game.query.filter_by(
+        player_id=current_user.id).order_by(Game.id.desc()).first()
+
+
+def get_current_proc(current_game):
+    # get proc id of active game
+    curr_proc_pid = current_game.proc_pid
+    # lookup process in process_dict
+    return proc_dict[curr_proc_pid]

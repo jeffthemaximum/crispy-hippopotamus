@@ -1,5 +1,8 @@
 import hashlib
 import subprocess
+import signal
+import os
+import pudb
 from . import db
 from . import login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -210,8 +213,9 @@ class Game(db.Model):
 
     def kill_proc(self):
         # get process with self.proc.pid
-        import os
-        os.kill(self.pid)
+        # pu.db
+        os.kill(self.proc_pid, signal.SIGKILL)
+        os.kill(self.proc_pid+1, signal.SIGKILL)
         return True
 
     def save_board_state(self):

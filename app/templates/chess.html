@@ -7,15 +7,25 @@
 <div class="page-header">
     <h1>Yooz playn chessss!</h1>
 </div>
-<table style="width:100%">
-    <tr>
-        <td><div class="left" id="board" style="width: 400px"></div></td>
-        <td>
-            <td>Hello world</td>
-            <td>Jeff Rules</td>
-        </td>
-    </tr>
-</table>
+<div id="chess-and-score">
+    <div id="chess">
+        <table id="chessboard">
+            <tr>
+                <div class="left" id="board" style="width: 400px"></div>
+            </tr>
+            <br>
+            <tr>
+                <td style="width: 200px"><a class="btn btn-danger" href="{{ url_for('.killgame') }}">Quit Without Saving</a></td>
+                <td style="width: 200px"><a class="btn btn-default" href="">Save and Quit</a></td>
+            </tr>
+        </table>
+    </div>
+    <div id="score">
+        <table id="scoreboard">
+            <tr>ScoreBoard</tr>
+        </table>
+    </div>
+</div>
 <div class="login-form">
     <!-- could put form here -->
 </div>
