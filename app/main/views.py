@@ -9,7 +9,10 @@ from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
 from .forms import StartChessForm
 import json
-import pudb
+# import pudb
+
+# of form {pid : subprocess}
+proc_dict = {}
 
 
 @main.route('/')
@@ -103,9 +106,14 @@ def edit_profile_admin(id):
 def chess():
     form = StartChessForm()
     if form.validate_on_submit():
+        # instantiante game object
         game = Game(player_id=current_user.id)
-        game.start_playing()
+        # start playing, save proc
+        proc = game.start_playing()
+        # add game to db and assign to user
         db.session.add(game)
+        # enter {pid:subprocess} into dict
+        proc_dict[proc.pid] = proc
         return render_template('chess.html')
     current_user_name = current_user.name
     return render_template(
@@ -117,8 +125,13 @@ def chess():
 @main.route('/getmethod/<jsdata>')
 @login_required
 def get_javascript_data(jsdata):
-    current_game = Game.query.filter_by(player_id=current_user.id).order_by(Game.id.desc()).first()
-    # current_game = Game.query.filter_by(proc_id=current_user.id).last()
+    # get user's active game
+    current_game = Game.query.filter_by(
+        player_id=current_user.id).order_by(Game.id.desc()).first()
+    # get proc id of active game
+    curr_proc_pid = current_game.proc_pid
+    # lookup process in process_dict
+    current_proc = proc_dict[curr_proc_pid]
     jsdata = jsdata[1:5]
     inp = jsdata + "\n"
     print 'sending:', repr(inp)
@@ -129,18 +142,25 @@ def get_javascript_data(jsdata):
 
     # send usr move to gnuchess via subprocess
     # pu.db
-    current_game.make_move(input=inp)
+    current_proc.stdin.write(inp)
+    current_proc.stdin.flush()
     return jsdata
 
 
 # instantiate a GET route to push python data to js
 @main.route('/getpythondata')
 def get_python_data():
-    current_game = Game.query.filter_by(player_id=current_user.id).order_by(Game.id.desc()).first()
+    # get user's active game
+    current_game = Game.query.filter_by(
+        player_id=current_user.id).order_by(Game.id.desc()).first()
+    # get proc id of active game
+    curr_proc_pid = current_game.proc_pid
+    # lookup process in process_dict
+    current_proc = proc_dict[curr_proc_pid]
     print "hello world"
     for i in range(0, 5):
         # pu.db
-        line = current_game.proc.stdout.readline().rstrip()
+        line = current_proc.stdout.readline().rstrip()
         print line
 
     # append cpu move to list

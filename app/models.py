@@ -7,8 +7,6 @@ from flask.ext.login import UserMixin, AnonymousUserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app, request
 from datetime import datetime
-import os.path
-import pudb
 
 
 class Permission:
@@ -205,15 +203,10 @@ class Game(db.Model):
         )
         self.proc_pid = proc.pid
         print self.proc_pid
+        return proc
         # save self.proc.pid
         # self.cpu_moves = []
         # self.usr_moves = []
-
-    def make_move(self, input):
-        pu.db
-        with open(os.path.join('/proc', str(self.proc_pid), 'fd', '1'), 'a') as stdin:
-            stdin.write(input)
-            stdin.flush()
 
     def kill_proc(self):
         # get process with self.proc.pid
@@ -224,6 +217,12 @@ class Game(db.Model):
     def save_board_state(self):
         # save board state to db
         pass
+'''
+    def make_move(self, input):
+with open(os.path.join('/proc', str(self.proc_pid), 'fd', '1'), 'a') as stdin:
+            stdin.write(input)
+            stdin.flush()
+'''
 
 '''
     def __init__(self, player, **kwargs):
