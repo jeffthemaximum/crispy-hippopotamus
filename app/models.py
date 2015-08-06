@@ -7,6 +7,8 @@ from flask.ext.login import UserMixin, AnonymousUserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app, request
 from datetime import datetime
+import os.path
+import pudb
 
 
 class Permission:
@@ -191,15 +193,32 @@ class Game(db.Model):
     player_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     last_played = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    proc = subprocess.Popen(
-        ['/usr/local/bin/gnuchessx'],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE)
+    proc_pid = db.Column(db.Integer)
     cpu_moves = []
     usr_moves = []
 
+    def start_playing(self):
+        proc = subprocess.Popen(
+            ['/usr/local/bin/gnuchessx'],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE
+        )
+        self.proc_pid = proc.pid
+        print self.proc_pid
+        # save self.proc.pid
+        # self.cpu_moves = []
+        # self.usr_moves = []
+
+    def make_move(self, input):
+        pu.db
+        with open(os.path.join('/proc', str(self.proc_pid), 'fd', '1'), 'a') as stdin:
+            stdin.write(input)
+            stdin.flush()
+
     def kill_proc(self):
-        self.proc.kill()
+        # get process with self.proc.pid
+        import os
+        os.kill(self.pid)
         return True
 
     def save_board_state(self):

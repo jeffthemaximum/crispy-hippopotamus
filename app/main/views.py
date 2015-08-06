@@ -9,6 +9,7 @@ from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
 from .forms import StartChessForm
 import json
+import pudb
 
 
 @main.route('/')
@@ -103,6 +104,7 @@ def chess():
     form = StartChessForm()
     if form.validate_on_submit():
         game = Game(player_id=current_user.id)
+        game.start_playing()
         db.session.add(game)
         return render_template('chess.html')
     current_user_name = current_user.name
@@ -115,7 +117,8 @@ def chess():
 @main.route('/getmethod/<jsdata>')
 @login_required
 def get_javascript_data(jsdata):
-    current_game = Game.query.filter_by(id=current_user.id).first()
+    current_game = Game.query.filter_by(player_id=current_user.id).order_by(Game.id.desc()).first()
+    # current_game = Game.query.filter_by(proc_id=current_user.id).last()
     jsdata = jsdata[1:5]
     inp = jsdata + "\n"
     print 'sending:', repr(inp)
@@ -126,15 +129,14 @@ def get_javascript_data(jsdata):
 
     # send usr move to gnuchess via subprocess
     # pu.db
-    current_game.proc.stdin.write(inp)
-    current_game.proc.stdin.flush()
+    current_game.make_move(input=inp)
     return jsdata
 
 
 # instantiate a GET route to push python data to js
 @main.route('/getpythondata')
 def get_python_data():
-    current_game = Game.query.filter_by(id=current_user.id).first()
+    current_game = Game.query.filter_by(player_id=current_user.id).order_by(Game.id.desc()).first()
     print "hello world"
     for i in range(0, 5):
         # pu.db
