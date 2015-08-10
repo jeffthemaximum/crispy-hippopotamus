@@ -1,8 +1,3 @@
-$(document).ready(function(){
-    board = new ChessBoard('board', cfg);
-    game = new Chess();
-});
-
 var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 
 	var move = game.move({
@@ -24,10 +19,12 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 		console.log("New position: " + game.fen());
 		console.log("Old position: " + ChessBoard.objToFen(oldPos));
 		console.log("Orientation: " + orientation);
-		var whiteScoreData = comparePieceCount()['whiteScore'];
-		var blackScoreData = comparePieceCount()['blackScore'];
+		var whiteScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['whiteScore'];
+		var blackScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['blackScore'];
 		console.log("white score: " + whiteScoreData);
 		console.log("black score: " + blackScoreData);
+        var currentUserScore = parseInt($("#user-score").text());
+        $("#user-score").text(currentUserScore + whiteScoreData);
 
 		$.get("/getpythondata", function(data){
 
@@ -45,6 +42,12 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 			console.log("New position: " + game.fen());
 			console.log("Old position: " + ChessBoard.objToFen(newPos));
 			console.log("Orientation: " + orientation);
+			var whiteScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['whiteScore'];
+			var blackScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['blackScore'];
+			console.log("white score: " + whiteScoreData);
+			console.log("black score: " + blackScoreData);
+            var currentCPUScore = parseInt($("#cpu-score").text());
+            $("#cpu-score").text(currentCPUScore + blackScoreData);
 		})
 	}
 };
@@ -65,6 +68,24 @@ var cfg = {
 	position: 'start',
 	onDrop: onDrop
 };
+
+$(document).ready(function(){
+    board = new ChessBoard('board', cfg);
+    game = new Chess();
+
+
+	$('a#saveAndQuit.btn.btn-default').on('click', function() {
+		console.log("Save and quit clicked!");
+		console.log(game.fen());
+		data = {'fen_string': game.fen()}
+
+		$.getJSON('/fen_to_db', {
+			fen_string: game.fen()
+		}, function(data) {
+			console.log(data)
+		})
+	});
+});
 
 function isLetter(str) {
   return str.length === 1 && str.match(/[a-z]/i);
@@ -94,16 +115,17 @@ function pieceCount(fenStr) {
     return pieceCount;
 }
 
-function comparePieceCount(){
-    var oldFenPieces = pieceCount(oldFen);
-    var newFenPieces = pieceCount(newFen);
+function comparePieceCount(oldFen, newFen){
     var whiteScore = 0;
     var blackScore = 0;
+    var oldFenPieces = pieceCount(oldFen.split(" ")[0]);
+    var newFenPieces = pieceCount(newFen.split(" ")[0]);
     // standard point values https://en.wikipedia.org/wiki/Chess_piece_relative_value
     var pointValues = {
         'p': 1,
         'k': 3,
         'b': 3,
+        'n': 3,
         'r': 5,
         'q': 9
     }
@@ -113,10 +135,10 @@ function comparePieceCount(){
             console.log("piece: " + key + " old count: " + oldFenPieces[key] + " new count: " + newFenPieces[key])
             //if piece is lowercase it's a black piece
             if (key == key.toLowerCase()) {
-                blackScore += pointValues[key];
+                whiteScore += pointValues[key];
             } else if (key == key.toUpperCase()) {
                 key = key.toLowerCase();
-                whiteScore += pointValues[key];
+                blackScore += pointValues[key];
             }
         }
     }
