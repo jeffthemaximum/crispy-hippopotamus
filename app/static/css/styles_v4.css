@@ -1,0 +1,79 @@
+.profile-thumbnail {
+    position: absolute;
+}
+.profile-header {
+    min-height: 260px;
+    margin-left: 280px;
+}
+ul.posts {
+    list-style-type: none;
+    padding: 0px;
+    margin: 16px 0px 0px 0px;
+    border-top: 1px solid #e0e0e0;
+}
+ul.posts li.post {
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+ul.posts li.post:hover {
+    background-color: #f0f0f0;
+}
+div.post-date {
+    float: right;
+}
+div.post-author {
+    font-weight: bold;
+}
+div.post-thumbnail {
+    position: absolute;
+}
+div.post-content {
+    margin-left: 48px;
+    min-height: 48px;
+}
+
+div#chess-and-score{
+    width: 900px;
+    height: 450px;
+}
+
+div#chess{
+    width: 450px;
+    display: inline-block;
+}
+
+div#score{
+    width: 400px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.tg  {
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 100%;
+}
+
+.tg td{
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    padding:10px 5px;
+    border-style:solid;
+    border-width:1px;
+    overflow:hidden;
+    word-break:normal;
+    width: 50%;
+}
+
+.tg th{
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:bold;
+    padding:10px 5px;
+    border-style:solid;
+    border-width:1px;
+    overflow:hidden;
+    word-break:normal;
+    width: 50%;
+}

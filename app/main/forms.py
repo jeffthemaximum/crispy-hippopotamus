@@ -56,3 +56,7 @@ class EditProfileAdminForm(Form):
 class PostForm(Form):
     body = TextAreaField('Whatchu wanna say?', validators=[Required()])
     submit = SubmitField('Submit')
+
+
+class StartChessForm(Form):
+    submit = SubmitField('Start Playing Chess!!')

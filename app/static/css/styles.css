@@ -31,3 +31,20 @@ div.post-content {
     margin-left: 48px;
     min-height: 48px;
 }
+
+div#chess-and-score{
+    width: 900px;
+    height: 450px;
+}
+
+div#chess{
+    width: 450px;
+    display: inline-block;
+}
+
+div#score{
+    width: 400px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+}

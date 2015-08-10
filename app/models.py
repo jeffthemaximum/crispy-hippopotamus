@@ -1,4 +1,8 @@
 import hashlib
+import subprocess
+import signal
+import os
+import pudb
 from . import db
 from . import login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -65,6 +69,7 @@ class User(UserMixin, db.Model):
     avatar_hash = db.Column(db.String(32))
     # sets up one-to-many relationships between user-posts
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    games = db.relationship('Game', backref='player', lazy='dynamic')
 
     # makes password a write-only property
     @property
@@ -180,6 +185,47 @@ class Post(db.Model):
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+
+class Game(db.Model):
+    __tablename__ = 'games'
+    id = db.Column(db.Integer, primary_key=True)
+    board_state = db.Column(db.String(128))
+    player_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    last_played = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    proc_pid = db.Column(db.Integer)
+    fen_state = db.Column(db.String(128))
+    cpu_moves = []
+    usr_moves = []
+
+    def start_playing(self):
+        proc = subprocess.Popen(
+            ['/usr/local/bin/gnuchessx'],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            shell=True
+        )
+        self.proc_pid = proc.pid
+        print self.proc_pid
+        return proc
+        # save self.proc.pid
+        # self.cpu_moves = []
+        # self.usr_moves = []
+
+    def kill_proc(self):
+        # get process with self.proc.pid
+        # pu.db
+        try:
+            os.kill(self.proc_pid, signal.SIGKILL)
+            os.kill(self.proc_pid + 1, signal.SIGKILL)
+        except:
+            print "Process no longer running"
+        return True
+
+    def save_board_state(self, fen_string):
+        self.fen_state = fen_string
+        return True
 
 
 # is registered as the class of the object that is assinged to

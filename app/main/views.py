@@ -4,9 +4,15 @@ from flask import flash, abort, request, current_app
 from flask.ext.login import current_user, login_required
 from . import main
 from .. import db
-from ..models import User, Role, Post, Permission
+from ..models import User, Role, Post, Permission, Game
 from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
+from .forms import StartChessForm
+import json
+import pudb
+
+# of form {pid : subprocess}
+proc_dict = {}
 
 
 @main.route('/')
@@ -93,3 +99,114 @@ def edit_profile_admin(id):
     form.location.data = user.location
     form.about_me.data = user.about_me
     return render_template('edit_profile.html', user=user, form=form)
+
+
+@main.route('/chess', methods=['POST', 'GET'])
+@login_required
+def chess():
+    form = StartChessForm()
+    if form.validate_on_submit():
+        # instantiante game object
+        game = Game(player_id=current_user.id)
+        # start playing, save proc
+        proc = game.start_playing()
+        # add game to db and assign to user
+        db.session.add(game)
+        # enter {pid:subprocess} into dict
+        proc_dict[proc.pid] = proc
+        return render_template('chess.html')
+    current_user_name = current_user.name
+    return render_template(
+        'start_chess.html',
+        form=form,
+        username=current_user_name)
+
+
+# gets moves from user then sends them to gnuchess
+@main.route('/getmethod/<jsdata>')
+@login_required
+def get_javascript_data(jsdata):
+    current_game = get_current_game(current_user)
+    current_proc = get_current_proc(current_game)
+    jsdata = jsdata[1:5]
+    inp = jsdata + "\n"
+    print 'sending:', repr(inp)
+
+    # add usr move to list
+    current_game.usr_moves.append(inp[:4])
+    print "usr: ", repr(current_game.usr_moves)
+
+    # send usr move to gnuchess via subprocess
+    # pu.db
+    current_proc.stdin.write(inp)
+    current_proc.stdin.flush()
+    return jsdata
+
+
+# instantiate a GET route to push python data to js
+@main.route('/getpythondata')
+def get_python_data():
+    # gets current proc by finding user's most recent game...
+    current_game = get_current_game(current_user)
+    current_proc = get_current_proc(current_game)
+    print "hello from gnuchess"
+    for i in range(0, 5):
+        # pu.db
+        line = current_proc.stdout.readline().rstrip()
+        print line
+
+    # append cpu move to list
+        if i == 4:
+            cpu_line = line[-4:]
+            current_game.cpu_moves.append(cpu_line)
+            cpu_line = list(cpu_line)
+            cpu_line.insert(2, "-")
+            cpu_line = "".join(cpu_line)
+            pythondata = cpu_line
+            print"json_move: ", repr(pythondata)
+    print "cpu: ", repr(current_game.cpu_moves)
+
+    return json.dumps(pythondata)
+
+
+@main.route('/save_and_quit')
+@login_required
+def save_and_quit():
+    current_game = get_current_game(current_user)
+    current_game.kill_proc()
+    return render_template(
+        'user.html',
+        user=current_user,
+        posts=current_user.posts)
+
+
+@main.route('/fen_to_db', methods=['GET', 'POST'])
+@login_required
+def fen_to_db():
+    fen_string = request.args.get('fen_string')
+    current_game = get_current_game(current_user)
+    current_game.save_board_state(fen_string)
+    return render_template(
+        'user.html',
+        user=current_user,
+        posts=current_user.posts)
+
+
+@main.route('/killgame')
+@login_required
+def killgame():
+    current_game = get_current_game(current_user)
+    current_game.kill_proc()
+    return redirect(url_for('.user', username=current_user.username))
+
+
+def get_current_game(current_user):
+    return Game.query.filter_by(
+        player_id=current_user.id).order_by(Game.id.desc()).first()
+
+
+def get_current_proc(current_game):
+    # get proc id of active game
+    curr_proc_pid = current_game.proc_pid
+    # lookup process in process_dict
+    return proc_dict[curr_proc_pid]

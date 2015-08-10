@@ -1,0 +1,40 @@
+{% extends "chess_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Hippopotamus - Chess{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Yooz playn chessss!</h1>
+</div>
+<div id="chess-and-score">
+    <div id="chess">
+        <table id="chessboard">
+            <tr>
+                <div class="left" id="board" style="width: 400px"></div>
+            </tr>
+            <br>
+            <tr>
+                <td style="width: 200px"><a class="btn btn-danger" href="{{ url_for('.killgame') }}">Quit Without Saving</a></td>
+                <td style="width: 200px"><a id="saveAndQuit" class="btn btn-default" href="{{ url_for('.save_and_quit') }}">Save and Quit</a></td>
+            </tr>
+        </table>
+    </div>
+    <div id="score" class="tg-wrap"><table class="tg">
+      <tr>
+        <th class="tg-031e">Computer Score</th>
+        <th class="tg-031e">Your Score</th>
+      </tr>
+      <tr>
+        <td class="tg-031e">1,000,000</td>
+        <td class="tg-031e">2</td>
+      </tr>
+    </table></div>
+</div>
+<div class="login-form">
+    <!-- could put form here -->
+</div>
+{% endblock %}
+
+
+
