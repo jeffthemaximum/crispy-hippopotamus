@@ -202,7 +202,8 @@ class Game(db.Model):
         proc = subprocess.Popen(
             ['/usr/local/bin/gnuchessx'],
             stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE
+            stdout=subprocess.PIPE,
+            shell=True
         )
         self.proc_pid = proc.pid
         print self.proc_pid
@@ -215,30 +216,12 @@ class Game(db.Model):
         # get process with self.proc.pid
         # pu.db
         os.kill(self.proc_pid, signal.SIGKILL)
-        os.kill(self.proc_pid+1, signal.SIGKILL)
+        os.kill(self.proc_pid + 1, signal.SIGKILL)
         return True
 
     def save_board_state(self):
         # save board state to db
         pass
-'''
-    def make_move(self, input):
-with open(os.path.join('/proc', str(self.proc_pid), 'fd', '1'), 'a') as stdin:
-            stdin.write(input)
-            stdin.flush()
-'''
-
-'''
-    def __init__(self, player, **kwargs):
-        super(Game, self).__init__(**kwargs)
-        self.proc = subprocess.Popen(
-            ['/usr/local/bin/gnuchessx'],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE)
-        self.cpu_moves = []
-        self.usr_moves = []
-        self.player_id = player
-'''
 
 
 # is registered as the class of the object that is assinged to
