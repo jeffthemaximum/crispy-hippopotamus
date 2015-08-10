@@ -146,6 +146,7 @@ def get_javascript_data(jsdata):
 # instantiate a GET route to push python data to js
 @main.route('/getpythondata')
 def get_python_data():
+    # gets current proc by finding user's most recent game...
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
     print "hello from gnuchess"
@@ -166,6 +167,14 @@ def get_python_data():
     print "cpu: ", repr(current_game.cpu_moves)
 
     return json.dumps(pythondata)
+
+
+@main.route('/save_and_quit')
+@login_required
+def save_and_quit():
+    current_game = get_current_game(current_user)
+    current_game.kill_proc()
+    return redirect(url_for('.user', username=current_user.username))
 
 
 @main.route('/killgame')

@@ -1,8 +1,3 @@
-$(document).ready(function(){
-    board = new ChessBoard('board', cfg);
-    game = new Chess();
-});
-
 var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 
 	var move = game.move({
@@ -61,3 +56,16 @@ var cfg = {
 	position: 'start',
 	onDrop: onDrop
 };
+
+$(document).ready(function(){
+    board = new ChessBoard('board', cfg);
+    game = new Chess();
+
+
+	$('a#saveAndQuit.btn.btn-default').on('click', function() {
+		console.log("Save and quit clicked!");
+		console.log(game.fen());
+		return false;
+	});
+
+});
