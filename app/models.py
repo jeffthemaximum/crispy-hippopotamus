@@ -195,6 +195,7 @@ class Game(db.Model):
     created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     last_played = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     proc_pid = db.Column(db.Integer)
+    fen_state = db.Column(db.String(128))
     cpu_moves = []
     usr_moves = []
 
@@ -215,13 +216,16 @@ class Game(db.Model):
     def kill_proc(self):
         # get process with self.proc.pid
         # pu.db
-        os.kill(self.proc_pid, signal.SIGKILL)
-        os.kill(self.proc_pid + 1, signal.SIGKILL)
+        try:
+            os.kill(self.proc_pid, signal.SIGKILL)
+            os.kill(self.proc_pid + 1, signal.SIGKILL)
+        except:
+            print "Process no longer running"
         return True
 
-    def save_board_state(self):
-        # save board state to db
-        pass
+    def save_board_state(self, fen_string):
+        self.fen_state = fen_string
+        return True
 
 
 # is registered as the class of the object that is assinged to

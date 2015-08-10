@@ -65,7 +65,24 @@ $(document).ready(function(){
 	$('a#saveAndQuit.btn.btn-default').on('click', function() {
 		console.log("Save and quit clicked!");
 		console.log(game.fen());
-		return false;
-	});
+		data = {'fen_string': game.fen()}
 
+		$.getJSON('/fen_to_db', {
+			fen_string: game.fen()
+		}, function(data) {
+			console.log(data)
+		})
+
+		/*
+		$.ajax({
+			type : "POST",
+			url : "/save_and_quit",
+			data: JSON.stringify(data, null, '\t'),
+			dataType: 'application/json;charset=UTF-8',
+			success: function(result) {
+			    console.log(result);
+			}
+		});
+		*/
+	});
 });

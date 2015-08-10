@@ -9,7 +9,7 @@ from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
 from .forms import StartChessForm
 import json
-# import pudb
+import pudb
 
 # of form {pid : subprocess}
 proc_dict = {}
@@ -174,7 +174,22 @@ def get_python_data():
 def save_and_quit():
     current_game = get_current_game(current_user)
     current_game.kill_proc()
-    return redirect(url_for('.user', username=current_user.username))
+    return render_template(
+        'user.html',
+        user=current_user,
+        posts=current_user.posts)
+
+
+@main.route('/fen_to_db', methods=['GET', 'POST'])
+@login_required
+def fen_to_db():
+    fen_string = request.args.get('fen_string')
+    current_game = get_current_game(current_user)
+    current_game.save_board_state(fen_string)
+    return render_template(
+        'user.html',
+        user=current_user,
+        posts=current_user.posts)
 
 
 @main.route('/killgame')
