@@ -35,11 +35,8 @@ def posts():
     # which is available at request.args
     # when a page isn't given, a default of 1 is used
     page = request.args.get('page', 1, type=int)
-    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
-        page,
-        per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
-        error_out=False)
-    posts = pagination.items
+    pagination = get_pagination(page)
+    posts = get_posts_to_display(request, pagination)
     return render_template(
         'posts.html',
         form=form,
@@ -241,3 +238,15 @@ def get_current_proc(current_game):
     curr_proc_pid = current_game.proc_pid
     # lookup process in process_dict
     return proc_dict[curr_proc_pid]
+
+
+def get_pagination(page):
+    return Post.query.order_by(Post.timestamp.desc()).paginate(
+        page,
+        per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
+        error_out=False)
+
+
+def get_posts_to_display(request, pagination):
+    posts = pagination.items
+    return posts
