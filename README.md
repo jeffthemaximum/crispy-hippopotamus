@@ -15,10 +15,6 @@ This is my attempt to create a browser based graphical user interface for xboard
 ```
 pip install -r requirements.txt
 ```
-* on command line, run:
-```
-python manage.py runserver
-```
 * Make sure you have postgres setup on your local machine: http://www.postgresql.org/
 * on command line, to setup your database, run:
 ```
