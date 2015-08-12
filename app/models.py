@@ -68,6 +68,7 @@ class User(UserMixin, db.Model):
     last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
     avatar_hash = db.Column(db.String(32))
     # sets up one-to-many relationships between user-posts
+    # Users have many posts and many games
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     games = db.relationship('Game', backref='player', lazy='dynamic')
 
@@ -184,20 +185,24 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    # posts have one user and one game
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    game_id = db.Column(db.Integer, db.ForeignKey('games.id'))
 
 
 class Game(db.Model):
     __tablename__ = 'games'
     id = db.Column(db.Integer, primary_key=True)
     board_state = db.Column(db.String(128))
-    player_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     last_played = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     proc_pid = db.Column(db.Integer)
     fen_state = db.Column(db.String(128))
     cpu_moves = []
     usr_moves = []
+    # Games have one player and many posts
+    player_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    posts = db.relationship('Post', backref='game', lazy='dynamic')
 
     def start_playing(self):
         proc = subprocess.Popen(

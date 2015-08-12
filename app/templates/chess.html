@@ -31,10 +31,15 @@
       </tr>
     </table></div>
 </div>
-<div class="login-form">
-    <!-- could put form here -->
+<div>
+    {% if current_user.can(Permission.WRITE_ARTICLES) %}
+        {{ wtf.quick_form(form) }}
+    {% endif %}
 </div>
+{% include '_post_list.html' %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.posts') }}
+</div>
+{% endif %}
 {% endblock %}
-
-
-

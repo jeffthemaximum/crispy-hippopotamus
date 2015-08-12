@@ -106,6 +106,12 @@ def edit_profile_admin(id):
 def chess():
     form = StartChessForm()
     if form.validate_on_submit():
+        post_form = PostForm()
+        for field in form:
+            if (field.type == 'TextAreaField'):
+                field(class="chess-message-b")
+            elif (field.type == 'SubmitField'):
+                field(class="chess-message-s")
         # instantiante game object
         game = Game(player_id=current_user.id)
         # start playing, save proc
@@ -114,12 +120,35 @@ def chess():
         db.session.add(game)
         # enter {pid:subprocess} into dict
         proc_dict[proc.pid] = proc
-        return render_template('chess.html')
+        return render_template('chess.html', form=post_form)
     current_user_name = current_user.name
     return render_template(
         'start_chess.html',
         form=form,
         username=current_user_name)
+
+
+@main.route('/chess_message/<game_id>', methods=['GET', 'POST'])
+@login_required
+def chess_message(game_id):
+    if request.method == 'GET':
+        posts = Post.query.filter_by(game_id=game_id).all()
+        post_array = []
+        for post in posts:
+            my_dict = {}
+            my_dict['user'] = post.author_id
+            my_dict['body'] = post.body
+            my_dict['game_id'] = post.game_id
+            post_array.append(my_dict)
+        return json.dumps(post_array)
+    if request.method == 'POST':
+        post = Post(
+            author=current_user,
+            game_id=game_id,
+            body=request.form['body'])
+        db.session.add(post)
+        db.session.commit()
+        return ''
 
 
 # gets moves from user then sends them to gnuchess
