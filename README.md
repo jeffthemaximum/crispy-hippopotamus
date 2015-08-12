@@ -10,6 +10,7 @@ This is my attempt to create a browser based graphical user interface for xboard
 ## What you need to run or use Crispy Hippopotamus:
 * Pull the repository to your local machine.
 * Install virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/install.html
+* Install GNU Chess on your local machine: http://www.gnu.org/software/chess/
 * setup a new virtual environment where you want to run crispy hippopotamus on your local machine.
 * on commade line, run:
 ```
