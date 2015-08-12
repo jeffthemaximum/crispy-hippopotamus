@@ -91,6 +91,7 @@ $(document).ready(function(){
         ev.preventDefault(); // stop form from submitting
         //get current game_id from flask route
         var text = $('.form').find('textarea[id="body"]').val();
+        //clear textarea field
         $('.form').find('textarea[id="body"]').val("");
         $.get("/get_game_id", function(data){
             var game_id = $.parseJSON(data);
