@@ -1,8 +1,9 @@
 Crispy Hippopotamus
 ======
 
-Readme last edited: August 12, 2015
 Who is responsible for this disaster: Jeff Maxim
+
+Readme last edited: August 12, 2015
 
 This is my attempt to create a browser based graphical user interface for xboard compatible chess chess engines, such as gnuchess. Basically, it's a browser-based version of xboard. Hopefully, it'll let you play against some of the best winboard/UCI chess engines right in your browser.
 
@@ -23,4 +24,9 @@ python manage.py runserver
 ```
 python manage.py db upgrade
 ```
+* Startup the localhost server by running on command line:
+```
+python manage.py db runserver
+```
+* Point your browser to localhost:5000
 * enjoy playing some beautiful chess.
