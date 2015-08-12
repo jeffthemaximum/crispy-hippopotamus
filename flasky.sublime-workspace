@@ -4,12 +4,172 @@
 		"selected_items":
 		[
 			[
-				"An",
-				"AnonymousUserMixin"
+				"post",
+				"post_form"
+			],
+			[
+				"curr",
+				"current_user"
+			],
+			[
+				"po",
+				"post_array	statement"
+			],
+			[
+				"json",
+				"jsonify"
+			],
+			[
+				"dum",
+				"dumps	function"
+			],
+			[
+				"pos",
+				"post_form	statement"
+			],
+			[
+				"ma",
+				"major_element	function"
+			],
+			[
+				"mi",
+				"minimum_count	statement"
+			],
+			[
+				"len",
+				"length	statement"
+			],
+			[
+				"li",
+				"line_array	statement"
+			],
+			[
+				"w",
+				"whiteScoreData"
+			],
+			[
+				"whi",
+				"whiteScore"
+			],
+			[
+				"up",
+				"updateScore"
+			],
+			[
+				"bl",
+				"blackScore"
+			],
+			[
+				"wh",
+				"whiteScore"
+			],
+			[
+				"sco",
+				"scoreDict"
+			],
+			[
+				"to",
+				"toLower"
+			],
+			[
+				"white",
+				"whiteScore"
+			],
+			[
+				"old",
+				"oldFenPieces"
+			],
+			[
+				"str",
+				"stringify"
+			],
+			[
+				"co",
+				"comparePieceCount"
+			],
+			[
+				"n",
+				"newFenPieces"
+			],
+			[
+				"ol",
+				"oldFenPieces"
 			],
 			[
 				"new",
-				"new_email"
+				"newFen"
+			],
+			[
+				"spli",
+				"splitOldFen"
+			],
+			[
+				"spl",
+				"splitOldFen"
+			],
+			[
+				"ne",
+				"newFenFrontRow"
+			],
+			[
+				"sa",
+				"save_and_quit"
+			],
+			[
+				"curre",
+				"current_user"
+			],
+			[
+				"fen",
+				"fen_string	param"
+			],
+			[
+				"on",
+				"onChange"
+			],
+			[
+				"current",
+				"current_game"
+			],
+			[
+				"get",
+				"get_current_proc	function"
+			],
+			[
+				"cur",
+				"current_proc"
+			],
+			[
+				"lo",
+				"login_required"
+			],
+			[
+				"curren",
+				"current_game"
+			],
+			[
+				"pag",
+				"pagination	statement"
+			],
+			[
+				"p",
+				"pagination	statement"
+			],
+			[
+				"val",
+				"validate_on_submit"
+			],
+			[
+				"Edi",
+				"EditProfileAdminForm	class"
+			],
+			[
+				"ab",
+				"about_me"
+			],
+			[
+				"An",
+				"AnonymousUserMixin"
 			],
 			[
 				"Pas",
@@ -26,10 +186,6 @@
 			[
 				"S",
 				"SECRET_KEY"
-			],
-			[
-				"curr",
-				"current_user"
 			],
 			[
 				"user",
@@ -62,10 +218,6 @@
 			[
 				"logout",
 				"logout_user"
-			],
-			[
-				"lo",
-				"login_form〔variable〕"
 			],
 			[
 				"log",
@@ -112,10 +264,6 @@
 				"check_for_duplicate_email〔function〕"
 			],
 			[
-				"ne",
-				"new_user"
-			],
-			[
 				"che",
 				"check_password_hash〔module〕"
 			],
@@ -152,14 +300,6 @@
 				"pythonKey"
 			],
 			[
-				"p",
-				"pythonKey"
-			],
-			[
-				"get",
-				"getKey"
-			],
-			[
 				"re",
 				"removeFirstChar"
 			],
@@ -186,10 +326,6 @@
 			[
 				"cr",
 				"create_possible_zipcode_list〔function〕"
-			],
-			[
-				"po",
-				"possible_zips〔variable〕"
 			],
 			[
 				"loca",
@@ -220,10 +356,6 @@
 				"key_generator〔function〕"
 			],
 			[
-				"co",
-				"color"
-			],
-			[
 				"mar",
 				"margin-bottom"
 			],
@@ -234,10 +366,6 @@
 			[
 				"margi",
 				"margin-right"
-			],
-			[
-				"ma",
-				"margin-left"
 			],
 			[
 				"respo",
@@ -272,10 +400,6 @@
 				"print_table"
 			],
 			[
-				"w",
-				"weather_dict"
-			],
-			[
 				"da",
 				"day_weather〔variable〕"
 			],
@@ -290,10 +414,6 @@
 			[
 				"fl",
 				"float_to_percent〔function〕"
-			],
-			[
-				"to",
-				"token_secret〔variable〕"
 			],
 			[
 				"con_s",
@@ -316,16 +436,8 @@
 				"most_recent_jeff_kharma〔variable〕"
 			],
 			[
-				"mi",
-				"mike_json〔variable〕"
-			],
-			[
 				"ur",
 				"urlopen〔function〕"
-			],
-			[
-				"n",
-				"numnums"
 			],
 			[
 				"nu",
@@ -384,26 +496,34 @@
 	"buffers":
 	[
 		{
-			"file": "app/templates/base.html",
+			"file": "app/models.py",
 			"settings":
 			{
-				"buffer_size": 2590,
+				"buffer_size": 8726,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/auth/forms.py",
+			"file": "app/templates/posts.html",
 			"settings":
 			{
-				"buffer_size": 3181,
+				"buffer_size": 620,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/templates/auth/register.html",
+			"file": "app/templates/chess_base.html",
 			"settings":
 			{
-				"buffer_size": 290,
+				"buffer_size": 3586,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/_post_list.html",
+			"settings":
+			{
+				"buffer_size": 675,
 				"line_ending": "Unix"
 			}
 		},
@@ -411,60 +531,34 @@
 			"file": "app/main/forms.py",
 			"settings":
 			{
-				"buffer_size": 236,
+				"buffer_size": 2591,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/templates/auth/login.html",
+			"contents": "var onDrop = function(source, target, piece, newPos, oldPos, orientation) {\n\n	var move = game.move({\n		from: source,\n		to: target,\n		promotion: 'q' //not sure if I need this..\n	});\n\n	if (move == null) {\n		return 'snapback'\n	} else {\n		usr_move = source + target\n		//post move data to python\n		//$.post( \"/postmethod/\", {javascript_data: usr_move});\n		//get usr_move from js to python\n		$.get(\"/getmethod/<\" + usr_move + \">\")\n\n		console.log(\"usrmove: \" + usr_move);\n		console.log(\"New position: \" + game.fen());\n		console.log(\"Old position: \" + ChessBoard.objToFen(oldPos));\n		console.log(\"Orientation: \" + orientation);\n		var whiteScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['whiteScore'];\n		var blackScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['blackScore'];\n		console.log(\"white score: \" + whiteScoreData);\n		console.log(\"black score: \" + blackScoreData);\n        var currentUserScore = parseInt($(\"#user-score\").text());\n        $(\"#user-score\").text(currentUserScore + whiteScoreData);\n\n		$.get(\"/getpythondata\", function(data){\n\n			var cpu_move = $.parseJSON(data)\n			console.log(cpu_move)\n			board.move(cpu_move)\n			var cpuMoveFrom = cpu_move.substring(0,2)\n			var cpuMoveTo = cpu_move.substring(3,5)\n			game.move({\n				from: cpuMoveFrom,\n				to: cpuMoveTo,\n				promotion: 'q' //not sure if I need this..\n			});\n			console.log(\"cpumove: \" + cpu_move);\n			console.log(\"New position: \" + game.fen());\n			console.log(\"Old position: \" + ChessBoard.objToFen(newPos));\n			console.log(\"Orientation: \" + orientation);\n			var whiteScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['whiteScore'];\n			var blackScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['blackScore'];\n			console.log(\"white score: \" + whiteScoreData);\n			console.log(\"black score: \" + blackScoreData);\n            var currentCPUScore = parseInt($(\"#cpu-score\").text());\n            $(\"#cpu-score\").text(currentCPUScore + blackScoreData);\n		})\n	}\n};\n\n// do not pick up pieces if the game is over\n// only pick up pieces for White\nvar onDragStart = function(source, piece, position, orientation) {\n	if (game.in_checkmate() === true || game.in_draw() === true || piece.search(/^b/) !== -1) {\n		return false;\n	}\n};\n\n\nvar cfg = {\n	onDragStart: onDragStart,\n	draggable: true,\n	dropOffBoard: 'snapback',\n	position: 'start',\n	onDrop: onDrop\n};\n\n$(document).ready(function(){\n    board = new ChessBoard('board', cfg);\n    game = new Chess();\n\n    //save and quit game when button is clicked\n	$('a#saveAndQuit.btn.btn-default').on('click', function() {\n		console.log(\"Save and quit clicked!\");\n		console.log(game.fen());\n		data = {'fen_string': game.fen()}\n\n		$.getJSON('/fen_to_db', {\n			fen_string: game.fen()\n		}, function(data) {\n			console.log(data)\n		})\n	});\n\n    //hijack post form data and POST to /chess_message route\n    $(#)\n\n});\n\nfunction isLetter(str) {\n  return str.length === 1 && str.match(/[a-z]/i);\n}\n\nfunction pieceCount(fenStr) {\n    var pieceCount = new Array();\n    pieceCount = {\n        'r': 0,\n        'n': 0,\n        'b': 0,\n        'q': 0,\n        'k': 0,\n        'p': 0,\n        'R': 0,\n        'N': 0,\n        'B': 0,\n        'Q': 0,\n        'K': 0,\n        'P': 0\n    };\n    for (var i = 0; i < fenStr.length; i++){\n        if (isLetter(fenStr[i])) {\n            pieceCount[fenStr[i]] += 1\n        }\n    }\n    return pieceCount;\n}\n\nfunction comparePieceCount(oldFen, newFen){\n    var whiteScore = 0;\n    var blackScore = 0;\n    var oldFenPieces = pieceCount(oldFen.split(\" \")[0]);\n    var newFenPieces = pieceCount(newFen.split(\" \")[0]);\n    // standard point values https://en.wikipedia.org/wiki/Chess_piece_relative_value\n    var pointValues = {\n        'p': 1,\n        'k': 3,\n        'b': 3,\n        'n': 3,\n        'r': 5,\n        'q': 9\n    }\n    for(key in oldFenPieces){\n        if (oldFenPieces[key] != newFenPieces[key]){\n            var difference = newFenPieces[key] - oldFenPieces[key];\n            console.log(\"piece: \" + key + \" old count: \" + oldFenPieces[key] + \" new count: \" + newFenPieces[key])\n            //if piece is lowercase it's a black piece\n            if (key == key.toLowerCase()) {\n                whiteScore += pointValues[key];\n            } else if (key == key.toUpperCase()) {\n                key = key.toLowerCase();\n                blackScore += pointValues[key];\n            }\n        }\n    }\n    return {'whiteScore': whiteScore, 'blackScore': blackScore}\n}\n",
+			"file": "app/static/js/chess_interface_v56.js",
+			"file_size": 4362,
+			"file_write_time": 1439248208000000,
 			"settings":
 			{
-				"buffer_size": 494,
+				"buffer_size": 4481,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/templates/auth/reset_password.html",
+			"file": "app/main/views.py",
 			"settings":
 			{
-				"buffer_size": 291,
+				"buffer_size": 7671,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/templates/index.html",
-			"settings":
-			{
-				"buffer_size": 647,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/auth/views.py",
-			"settings":
-			{
-				"buffer_size": 6666,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/auth/email/reset_password.html",
-			"settings":
-			{
-				"buffer_size": 510,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/auth/email/reset_password.txt",
-			"settings":
-			{
-				"buffer_size": 303,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/change_password.html",
+			"contents": "",
+			"file": ".git/MERGE_MSG",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
 				"buffer_size": 0,
@@ -472,95 +566,10 @@
 			}
 		},
 		{
-			"file": "app/templates/auth/unconfirmed.html",
+			"file": "app/templates/chess.html",
 			"settings":
 			{
-				"buffer_size": 588,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 66 files for \"load_user\"\n\n/Users/jeff/Dropbox/projects/flasky/app/models.py:\n   39  \n   40      @login_manager.user_loader\n   41:     def load_user(self, user_id):\n   42          # the return value is a user object, or None\n   43          return User.query.get(int(user_id))\n\n1 match in 1 file\n\n\nSearching 73 files for \"generate_email_change_token\"\n\n/Users/jeff/Dropbox/projects/flasky/app/models.py:\n   73          return '<User %r>' % self.username\n   74  \n   75:     def generate_email_change_token(self, new_email, expiration=3600):\n   76          s = Serializer(current_app.config['SECRET_KEY'], expiration)\n   77          return s.dumps({'change_email': self.id, 'new_email': new_email})\n\n/Users/jeff/Dropbox/projects/flasky/app/auth/views.py:\n  159          if current_user.verify_password(form.password.data):\n  160              new_email = form.email.data\n  161:             token = current_user.generate_email_change_token(new_email)\n  162              send_email(new_email, 'Confirm your new email address',\n  163                         'auth/email/change_email',\n\n2 matches across 2 files\n",
-			"settings":
-			{
-				"buffer_size": 1112,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "app/templates/auth/email/confirm.txt",
-			"settings":
-			{
-				"buffer_size": 252,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/auth/email/confirm.html",
-			"settings":
-			{
-				"buffer_size": 459,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "from . import db\nfrom . import login_manager\nfrom werkzeug.security import generate_password_hash, check_password_hash\nfrom flask.ext.login import UserMixin, AnonymousUserMixin\nfrom itsdangerous import TimedJSONWebSignatureSerializer as Serializer\nfrom flask import current_app\n\n\nclass Permission:\n    FOLLOW = 0x01\n    COMMENT = 0x02\n    WRITE_ARTICLES = 0x04\n    MODERATE_COMMENTS = 0x08\n    ADMINISTER = 0x80\n\n\nclass Role(db.Model):\n    __tablename__ = 'roles'\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(64), unique=True)\n    default = db.Column(db.Boolean, default=False, index=True)\n    permissions = db.Column(db.Integer)\n    users = db.relationship('User', backref='role', lazy='dynamic')\n\n    @staticmethod\n    def insert_roles():\n        roles = {\n            'User': (Permission.FOLLOW |\n                     Permission.COMMENT |\n                     Permission.WRITE_ARTICLES, True),\n            'Moderator': (Permission.FOLLOW |\n                          Permission.COMMENT |\n                          Permission.WRITE_ARTICLES |\n                          Permission.MODERATE_COMMENTS, False),\n            'Administrator': (0xff, False)\n        }\n        for r in roles:\n            role = Role.query.filter_by(name=r).first()\n            if role is None:\n                role = Role(name=r)\n            role.permissions = roles[r][0]\n            role.default = roles[r][1]\n            db.session.add(role)\n        db.session.commit()\n\n    def __repr__(self):\n        return '<Role %r>' % self.name\n\n\nclass User(UserMixin, db.Model):\n    __tablename__ = 'users'\n    id = db.Column(db.Integer, primary_key=True)\n    email = db.Column(db. String(64), unique=True, index=True)\n    username = db.Column(db.String(64), unique=True, index=True)\n    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))\n    password_hash = db.Column(db.String(128))\n    confirmed = db.Column(db.Boolean, default=False)\n\n    # makes password a write-only property\n    @property\n    def password(self):\n        raise AttributeError('password is not a readable attribute')\n\n    @password.setter\n    def password(self, password):\n        self.password_hash = generate_password_hash(password)\n\n    def __init__(self, **kwargs):\n        super(User, self).__init__(**kwargs)\n        if self.role is None:\n            if self.email == current_app.config['FLASKY_ADMIN']:\n                self.role = Role.query.filter_by(permissions=0xff).first()\n            if self.role is None:\n                self.role = Role.query.filter_by(default=True).first()\n\n    def can(self, permissions):\n        return self.role is not None and \\\n            (self.role.permissions & permissions) == permissions\n\n    def is_administrator(self):\n        return self.can(Permission.ADMINISTER)\n\n    def verify_password(self, password):\n        return check_password_hash(self.password_hash, password)\n\n    def generate_confirmation_token(self, expiration=3600):\n        s = Serializer(current_app.config['SECRET_KEY'], expiration)\n        return s.dumps({'confirm': self.id})\n\n    def confirm(self, token):\n        s = Serializer(current_app.config['SECRET_KEY'])\n        try:\n            data = s.loads(token)\n        except:\n            return False\n        if data.get('confirm') != self.id:\n            return False\n        self.confirmed = True\n        db.session.add(self)\n        return True\n\n    def generate_reset_token(self, expiration=3600):\n        s = Serializer(current_app.config['SECRET_KEY'], expiration)\n        return s.dumps({'reset': self.id})\n\n    def reset_password(self, token, new_password):\n        s = Serializer(current_app.config['SECRET_KEY'])\n        try:\n            data = s.loads(token)\n        except:\n            return False\n        if data.get('reset') != self.id:\n            return False\n        self.password = new_password\n        db.session.add(self)\n        return True\n\n    def generate_email_change_token(self, new_email, expiration=3600):\n        s = Serializer(current_app.config['SECRET_KEY'], expiration)\n        return s.dumps({'change_email': self.id, 'new_email': new_email})\n\n    def change_email(self, token):\n        s = Serializer(current_app.config['SECRET_KEY'])\n        try:\n            data = s.loads(token)\n        except:\n            return False\n        if data.get('change_email') != self.id:\n            return False\n        new_email = data.get('new_email')\n        if self.query.filter_by(email=new_email) is None:\n            return False\n        self.email = new_email\n        db.session.add(self)\n        return True\n\n    def __repr__(self):\n        return '<User %r>' % self.username\n\n\nclass AnonymousUser(AnonymousUserMixin):\n    def can(self, permissions):\n        return False\n\n    def is_administrator(self):\n        return False\n\nlogin_manager.anonymous_user = AnonymousUser\n\n\n@login_manager.user_loader\ndef load_user(user_id):\n    # the return value is a user object, or None\n    return User.query.get(int(user_id))\n",
-			"file": "app/models.py",
-			"file_size": 4995,
-			"file_write_time": 1438651662000000,
-			"settings":
-			{
-				"buffer_size": 4995,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/jeff/Library/Application Support/Sublime Text 2/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 836,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/auth/change_email.html",
-			"settings":
-			{
-				"buffer_size": 303,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/auth/email/change_email.html",
-			"settings":
-			{
-				"buffer_size": 513,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/auth/email/change_email.txt",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "README.md",
-			"settings":
-			{
-				"buffer_size": 316,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": ".git/COMMIT_EDITMSG",
-			"settings":
-			{
-				"buffer_size": 24,
+				"buffer_size": 1372,
 				"line_ending": "Unix"
 			}
 		}
@@ -572,12 +581,12 @@
 		"selected_items":
 		[
 			[
-				"pack",
-				"Package Control: Remove Package"
-			],
-			[
 				"pa",
 				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
 			],
 			[
 				"pac",
@@ -613,33 +622,98 @@
 	},
 	"file_history":
 	[
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/chess1.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/base.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/chess_posts.html",
+		"/Users/jeff/Dropbox/projects/CodeEval/JS/easy/crispy_scoreboard_algorithm.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v1.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/chess.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/chess_base.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v56.js",
+		"/Users/jeff/Dropbox/projects/CodeEval/Python/Easy/the_major_element.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v41.js",
+		"/Users/jeff/Dropbox/projects/CodeEval/JS/easy/test.html",
+		"/Users/jeff/Dropbox/projects/CodeEval/JS/easy/reverse_and_add.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/css/styles_v4.css",
+		"/Users/jeff/Dropbox/projects/flasky/app/models.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v31.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/main/views.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v30.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v34.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chessboard-0.3.0_v2.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v29.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v12.js",
+		"/Users/jeff/Dropbox/projects/CodeEval/Python/Easy/swapCase.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v9.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface_v11.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chessboard-0.3.0.1.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/js/chess_interface.js",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/user.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/css/styles.css",
+		"/Users/jeff/Dropbox/projects/flasky/app/auth/views.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/index.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/email/reset_password.txt",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/email/reset_password.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/email/confirm.txt",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/email/confirm.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/email/change_email.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/unconfirmed.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/reset_password.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/register.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/login.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/change_password.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/change_email.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/start_chess.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/posts.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/_macros.html",
+		"/Users/jeff/Dropbox/projects/flasky/manage.py",
+		"/Users/jeff/Dropbox/projects/flasky/config.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/main/forms.py",
+		"/Users/jeff/Dropbox/projects/hippopotamus/app/templates/index.html",
+		"/Users/jeff/Dropbox/projects/hippopotamus/app/templates/layout.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/edit_profile.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/500.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/404.html",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/403.html",
+		"/Users/jeff/Dropbox/projects/hippopotamus/app/routes.py",
+		"/Users/jeff/Dropbox/python/me/tic_tac_toe.py",
+		"/Users/jeff/Dropbox/projects/hippopotamus/.Python",
+		"/Users/jeff/Dropbox/projects/obscure-atoll-2224/source/_posts/2015-08-04-week-5.markdown",
+		"/Users/jeff/Dropbox/projects/flasky/app/decorators.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/main/__init__.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/static/styles.css",
+		"/Users/jeff/Dropbox/projects/flasky/app/auth/forms.py",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/_post_list.html",
+		"/Users/jeff/Dropbox/projects/flasky/requirements/common.txt",
+		"/Users/jeff/Dropbox/projects/flasky/requirements/prod.txt",
+		"/Users/jeff/Dropbox/projects/flasky/requirements/dev.txt",
+		"/Users/jeff/.bashrc",
+		"/Users/jeff/Dropbox/flasky_template/manage.py",
+		"/Users/jeff/Dropbox/projects/flasky/.git/COMMIT_EDITMSG",
+		"/Users/jeff/Dropbox/projects/flasky/README.md",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/email/change_email.txt",
+		"/Users/jeff/Library/Application Support/Sublime Text 2/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
+		"/Users/jeff/Dropbox/projects/flasky/flasky.sublime-project",
+		"/Users/jeff/Dropbox/projects/flasky/app/templates/change_password.html",
 		"/Users/jeff/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/jeff/Library/Application Support/Sublime Text 2/Packages/Package Control/Package Control.sublime-settings",
-		"/Users/jeff/Dropbox/projects/flasky/app/models.py",
 		"/Users/jeff/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/jeff/Library/Application Support/Sublime Text 2/Packages/Python Flake8 Lint/Flake8Lint.sublime-settings",
 		"/Users/jeff/Dropbox/projects/docker-flask-example/keys.sh",
 		"/Users/jeff/.bash_profile",
-		"/Users/jeff/Dropbox/projects/flasky/app/main/views.py",
 		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/__init__.py",
-		"/Users/jeff/Dropbox/projects/flasky/app/auth/views.py",
-		"/Users/jeff/Dropbox/projects/flasky/config.py",
 		"/Users/jeff/Dropbox/projects/flasky/app/__init__.py",
 		"/Users/jeff/Dropbox/projects/flasky/hello.py",
 		"/Users/jeff/Dropbox/projects/flasky/app/auth/__init__.py",
-		"/Users/jeff/Dropbox/projects/flasky/app/main/__init__.py",
 		"/Users/jeff/Dropbox/projects/flasky/requirements.txt",
 		"/Users/jeff/Dropbox/flasky_template/app/templates/base.html",
 		"/Users/jeff/Dropbox/projects/flasky/app/templates/auth/views.py",
-		"/Users/jeff/.bashrc",
-		"/Users/jeff/Dropbox/projects/hippopotamus/app/routes.py",
 		"/Users/jeff/Dropbox/projects/hippopotamus/app/static/js/chess_interface.js",
 		"/Users/jeff/Dropbox/projects/hippopotamus/app/game_class.py",
 		"/Users/jeff/projects/weather_app/requirements.txt",
 		"/Users/jeff/projects/weather_app/app/routes.py",
 		"/Users/jeff/Dropbox/projects/hippopotamus/requirements.txt",
 		"/Users/jeff/projects/weather_app/app/static/js/scripts.js",
-		"/Users/jeff/Dropbox/python/me/tic_tac_toe.py",
 		"/Users/jeff/Dropbox/python/me/url_shortener/flaskapp/app/static/js/scripts.js",
 		"/Users/jeff/Dropbox/python/me/url_shortener/flaskapp/app/routes.py",
 		"/Users/jeff/Dropbox/python/me/weather_app/flaskapp/app/templates/home.html",
@@ -675,64 +749,7 @@
 		"/Users/jeff/Dropbox/chess/hippopotamus/hippopotamus_app/README.md",
 		"/Users/jeff/Dropbox/chess/hippopotamus/hippopotamus_app/static/js/jquery.js",
 		"/Users/jeff/Dropbox/chess/hippopotamus/hippopotamus_app/static/js/chessboard-0.3.0.js",
-		"/Users/jeff/Dropbox/chess/hippopotamus/hippopotamus_app/index.html",
-		"/Users/jeff/Dropbox/chess/piping/catch_gnuchess_output.py",
-		"/Users/jeff/Dropbox/chess/piping/index.html",
-		"/Users/jeff/Dropbox/chess/piping/js/chess_interface.js",
-		"/Users/jeff/Dropbox/python/me/weather_app/flaskapp/app/config.py",
-		"/Users/jeff/Dropbox/obscure-atoll-2224/_config.yml",
-		"/Users/jeff/Dropbox/obscure-atoll-2224/source/_posts/2015-07-10-recurse-center-day-4-and-5.markdown",
-		"/Users/jeff/Dropbox/obscure-atoll-2224/source/_posts/2015-07-08-recurse-center-day-3.markdown",
-		"/Users/jeff/Dropbox/obscure-atoll-2224/source/_posts/2015-07-07-recurse-center-day-2.markdown",
-		"/Users/jeff/Dropbox/obscure-atoll-2224/source/_posts/2015-07-06-recurse-center-day-1.markdown",
-		"/Users/jeff/Dropbox/chess/piping/chessboardjs-0.3.0/js/chess_interface.js",
-		"/Users/jeff/Dropbox/javasccipt/cc_crack_1.0/js/scripts.js",
-		"/Users/jeff/Dropbox/chess/piping/chessboardjs-0.3.0/js/chessboard-0.3.0.min.js",
-		"/Users/jeff/Dropbox/javasccipt/cc_crack_1.0/index.html",
-		"/Users/jeff/Dropbox/javasccipt/cc_crack_1.0/js/jqscripts.js",
-		"/Users/jeff/Dropbox/python/me/weather_app/flaskapp/app/static/img/start-cycling-gl.jpg",
-		"/Users/jeff/Dropbox/python/me/weather_app/test_wunderground_api.py",
-		"/Users/jeff/Dropbox/python/me/weather_app/flaskapp/app/static/img/rain-cycling.jpg",
-		"/Users/jeff/Dropbox/chess/piping/fake_intermediary.py",
-		"/Users/jeff/Dropbox/chess/piping/fake_chess_engine.py",
-		"/Users/jeff/Dropbox/chess/piping/receiver.py",
-		"/Users/jeff/Dropbox/chess/piping/sender.py",
-		"/Users/jeff/Dropbox/python/me/weather_app/flaskapp/app/templates/about.html",
-		"/Users/jeff/Dropbox/python/me/weather_app/flaskapp/app/Procfile",
-		"/Users/jeff/Dropbox/python/me/weather_app/weather.py",
-		"/Users/jeff/Dropbox/python/me/weather_app/flaskapp/Procfile",
-		"/Users/jeff/Dropbox/python/me/reddit-project-2/reddit_project_2_twitter.py",
-		"/Users/jeff/Dropbox/python/me/reddit-project-2/reddit_project_2.py",
-		"/Users/jeff/Dropbox/python/me/pipes_test/2_pipes_test.py",
-		"/Users/jeff/Dropbox/python/me/pipes_test/3_pipes_test.py",
-		"/Users/jeff/Dropbox/python/me/weather_app/flaskapp/app/README.md",
-		"/Users/jeff/Dropbox/python/me/pipes_test/output.txt",
-		"/Users/jeff/Dropbox/python/me/reddit project 1/reddit.py",
-		"/Users/jeff/Dropbox/python/me/pipes_test/test3.txt",
-		"/Users/jeff/Dropbox/checkers/tomcheckers/checkers/checkers.py",
-		"/Users/jeff/Dropbox/python/codeeval/medium/decimal_to_binary.py",
-		"/Users/jeff/Dropbox/python/codeeval/medium/column_names.py",
-		"/Users/jeff/Dropbox/python/codeeval/medium/max_range_sum.py",
-		"/Users/jeff/Dropbox/python/me/pipes_test/1_pipes_test.py",
-		"/Users/jeff/Dropbox/python/me/1_pipes_test.py",
-		"/Users/jeff/Dropbox/python/me/reddit-project-2/output.txt",
-		"/Users/jeff/Dropbox/python/me/output.txt",
-		"/Users/jeff/Dropbox/python/me/reddit.py",
-		"/Users/jeff/Dropbox/checkers/tomcheckers/checkers/readme.txt",
-		"/Users/jeff/Dropbox/checkers/readme",
-		"/Users/jeff/Dropbox/python/learn_python_the_hard_way/ex43_test_game.py",
-		"/Users/jeff/Dropbox/checkers/tomcheckers/checkers/.git/COMMIT_EDITMSG",
-		"/Users/jeff/Dropbox/checkers/checkers.py",
-		"/Users/jeff/.gitconfig",
-		"/Users/jeff/Dropbox/checkers/.git/COMMIT_EDITMSG",
-		"/Users/jeff/Dropbox/checkers/.gitconfig",
-		"/Users/jeff/Dropbox/ruby/tictactoe_mike_changes.rb",
-		"/Users/jeff/Dropbox/ruby/tictactoe2.rb",
-		"/Users/jeff/Dropbox/python/learn_python_the_hard_way/ex40_study_drills_1.py",
-		"/Users/jeff/Dropbox/python/learn_python_the_hard_way/ex41_a_reading_test.py",
-		"/Users/jeff/Dropbox/python/learn_python_the_hard_way/ex40_first_class_example.py",
-		"/Users/jeff/Dropbox/python/CodingBat/Warmup-2/double_char.py",
-		"/Users/jeff/Dropbox/python/CodingBat/Warmup-2/lone_sum.py"
+		"/Users/jeff/Dropbox/chess/hippopotamus/hippopotamus_app/index.html"
 	],
 	"find":
 	{
@@ -751,6 +768,44 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"newFen.split('/')",
+			"chess_interface_v28",
+			"debugger",
+			"c",
+			"swap ca",
+			"current_app",
+			"fen",
+			"	",
+			"flasky",
+			"Flasky",
+			"flasky",
+			"	",
+			"		",
+			"	",
+			"current_user.proc",
+			"	",
+			"    	",
+			"	",
+			"		",
+			"			",
+			"						",
+			"	",
+			"    	",
+			"Server",
+			"	",
+			"home",
+			"	",
+			"		",
+			"	",
+			"validate_username",
+			"validate_email",
+			"	",
+			"		",
+			"			",
+			"				",
+			"							",
+			"	",
+			"datetime",
 			"ignored",
 			"password_reset",
 			"remove",
@@ -800,87 +855,84 @@
 	"groups":
 	[
 		{
-			"selected": 15,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/templates/base.html",
+					"file": "app/models.py",
 					"settings":
 					{
-						"buffer_size": 2590,
+						"buffer_size": 8726,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1720,
-								1720
+								6869,
+								6869
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/Python/Python.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 106.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/auth/forms.py",
+					"file": "app/templates/posts.html",
 					"settings":
 					{
-						"buffer_size": 3181,
+						"buffer_size": 620,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3013,
-								3013
+								104,
+								0
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 235.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "app/templates/auth/register.html",
+					"file": "app/templates/chess_base.html",
 					"settings":
 					{
-						"buffer_size": 290,
+						"buffer_size": 3586,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								216,
-								216
+								183,
+								183
 							]
 						],
 						"settings":
 						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -890,10 +942,10 @@
 				},
 				{
 					"buffer": 3,
-					"file": "app/main/forms.py",
+					"file": "app/templates/_post_list.html",
 					"settings":
 					{
-						"buffer_size": 236,
+						"buffer_size": 675,
 						"regions":
 						{
 						},
@@ -906,227 +958,6 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/templates/auth/login.html",
-					"settings":
-					{
-						"buffer_size": 494,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								303,
-								303
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/templates/auth/reset_password.html",
-					"settings":
-					{
-						"buffer_size": 291,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								291,
-								291
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/templates/index.html",
-					"settings":
-					{
-						"buffer_size": 647,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								252,
-								252
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app/auth/views.py",
-					"settings":
-					{
-						"buffer_size": 6666,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5723,
-								5723
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"rulers":
-							[
-								80
-							],
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1737.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "app/templates/auth/email/reset_password.html",
-					"settings":
-					{
-						"buffer_size": 510,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								509,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "app/templates/auth/email/reset_password.txt",
-					"settings":
-					{
-						"buffer_size": 303,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								303,
-								303
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "app/templates/change_password.html",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "app/templates/auth/unconfirmed.html",
-					"settings":
-					{
-						"buffer_size": 588,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								432,
-								432
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
@@ -1138,222 +969,90 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 4,
+					"file": "app/main/forms.py",
 					"settings":
 					{
-						"buffer_size": 1112,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										148,
-										157
-									],
-									[
-										484,
-										511
-									],
-									[
-										915,
-										942
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								306,
-								306
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"output_tag": 2,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 165.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "app/templates/auth/email/confirm.txt",
-					"settings":
-					{
-						"buffer_size": 252,
+						"buffer_size": 2591,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								197,
-								197
+								2510,
+								2510
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "app/templates/auth/email/confirm.html",
-					"settings":
-					{
-						"buffer_size": 459,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								459,
-								459
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "app/models.py",
-					"settings":
-					{
-						"buffer_size": 4995,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								86,
-								86
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
 							"syntax": "Packages/Python/Python.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1.0,
+						"translation.y": 122.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 16,
-					"file": "/Users/jeff/Library/Application Support/Sublime Text 2/Packages/Jedi - Python autocompletion/sublime_jedi.sublime-settings",
+					"buffer": 5,
+					"file": "app/static/js/chess_interface_v56.js",
 					"settings":
 					{
-						"buffer_size": 836,
+						"buffer_size": 4481,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								832,
-								832
+								2887,
+								2887
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 727.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/main/views.py",
+					"settings":
+					{
+						"buffer_size": 7671,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3777,
+								3777
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 538.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 17,
-					"file": "app/templates/auth/change_email.html",
-					"settings":
-					{
-						"buffer_size": 303,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								114,
-								114
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 18,
-					"file": "app/templates/auth/email/change_email.html",
-					"settings":
-					{
-						"buffer_size": 513,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								369,
-								369
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 19,
-					"file": "app/templates/auth/email/change_email.txt",
+					"buffer": 7,
+					"file": ".git/MERGE_MSG",
 					"settings":
 					{
 						"buffer_size": 0,
@@ -1378,50 +1077,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 20,
-					"file": "README.md",
+					"buffer": 8,
+					"file": "app/templates/chess.html",
 					"settings":
 					{
-						"buffer_size": 316,
+						"buffer_size": 1372,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19,
-								19
+								1145,
+								1145
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 21,
-					"file": ".git/COMMIT_EDITMSG",
-					"settings":
-					{
-						"buffer_size": 24,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1492,6 +1167,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 136.0,
+	"side_bar_width": 205.0,
 	"status_bar_visible": false
 }
