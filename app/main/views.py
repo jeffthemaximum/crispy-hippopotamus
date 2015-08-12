@@ -111,7 +111,15 @@ def chess():
         db.session.add(game)
         # enter {pid:subprocess} into dict
         proc_dict[proc.pid] = proc
-        return render_template('chess.html', form=post_form)
+        # get posts data
+        page = request.args.get('page', 1, type=int)
+        pagination = get_pagination(page)
+        posts = get_posts_to_display(request, pagination)
+        return render_template(
+            'chess.html',
+            form=post_form,
+            posts=posts,
+            pagination=pagination)
     current_user_name = current_user.name
     return render_template(
         'start_chess.html',
