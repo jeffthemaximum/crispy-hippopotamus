@@ -9,7 +9,6 @@ from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
 from .forms import StartChessForm
 import json
-import pudb
 
 # of form {pid : subprocess}
 proc_dict = {}
@@ -107,11 +106,6 @@ def chess():
     form = StartChessForm()
     if form.validate_on_submit():
         post_form = PostForm()
-        for field in form:
-            if (field.type == 'TextAreaField'):
-                field(class="chess-message-b")
-            elif (field.type == 'SubmitField'):
-                field(class="chess-message-s")
         # instantiante game object
         game = Game(player_id=current_user.id)
         # start playing, save proc
@@ -145,10 +139,18 @@ def chess_message(game_id):
         post = Post(
             author=current_user,
             game_id=game_id,
-            body=request.form['body'])
+            body=request.data)
         db.session.add(post)
         db.session.commit()
         return ''
+
+
+@main.route('/get_game_id')
+@login_required
+def get_game_id():
+    current_game = get_current_game(current_user)
+    game_id = current_game.id
+    return json.dumps(game_id)
 
 
 # gets moves from user then sends them to gnuchess
