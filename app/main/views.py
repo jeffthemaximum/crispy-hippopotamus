@@ -102,29 +102,38 @@ def edit_profile_admin(id):
 def chess():
     form = StartChessForm()
     if form.validate_on_submit():
-        post_form = PostForm()
         # instantiante game object
         game = Game(player_id=current_user.id)
         # start playing, save proc
         proc = game.start_playing()
         # add game to db and assign to user
         db.session.add(game)
+        db.session.commit()
         # enter {pid:subprocess} into dict
         proc_dict[proc.pid] = proc
-        # get posts data
-        page = request.args.get('page', 1, type=int)
-        pagination = get_pagination(page)
-        posts = get_posts_to_display(request, pagination)
-        return render_template(
-            'chess.html',
-            form=post_form,
-            posts=posts,
-            pagination=pagination)
+        game_id = game.id
+        print game_id
+        return redirect(url_for('.chess_id', game_id=game_id))
     current_user_name = current_user.name
     return render_template(
         'start_chess.html',
         form=form,
         username=current_user_name)
+
+
+@main.route('/chess/<game_id>', methods=['POST', 'GET'])
+@login_required
+def chess_id(game_id):
+    post_form = PostForm()
+    # get posts data
+    page = request.args.get('page', 1, type=int)
+    pagination = get_pagination(page)
+    posts = get_posts_to_display(request, pagination)
+    return render_template(
+        'chess.html',
+        form=post_form,
+        posts=posts,
+        pagination=pagination)
 
 
 @main.route('/chess_message/<game_id>', methods=['GET', 'POST'])
