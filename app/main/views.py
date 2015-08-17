@@ -127,7 +127,7 @@ def chess_id(game_id):
     post_form = PostForm()
     # get posts data
     page = request.args.get('page', 1, type=int)
-    pagination = get_pagination(page)
+    pagination = get_pagination_for_game_id(page, game_id)
     posts = get_posts_to_display(request, pagination)
     return render_template(
         'chess.html',
@@ -257,8 +257,18 @@ def get_current_proc(current_game):
     return proc_dict[curr_proc_pid]
 
 
+# this queries db for all posts. It's used to get all posts.
 def get_pagination(page):
     return Post.query.order_by(Post.timestamp.desc()).paginate(
+        page,
+        per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
+        error_out=False)
+
+
+# this queries db for posts, but only returns posts with a specific game_id
+def get_pagination_for_game_id(page, game_id):
+    order = Post.timestamp.desc()
+    return Post.query.filter_by(game_id=game_id).order_by(order).paginate(
         page,
         per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],
         error_out=False)
