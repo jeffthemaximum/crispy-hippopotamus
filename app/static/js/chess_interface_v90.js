@@ -147,6 +147,10 @@ function comparePieceCount(oldFen, newFen){
     return {'whiteScore': whiteScore, 'blackScore': blackScore}
 }
 
+function killProc() {
+    $.get("/killgame");
+}
+
 $(document).ready(function(){
     // check if game belongs to user
     game_id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
@@ -218,4 +222,12 @@ $(document).ready(function(){
     });
     //refreshes posts at bottom of chess game every five seconds
     setInterval(getGameIdPosts, (5 * 1000));
+
+    //kill game process when game_player leaves page
+    $.get("/does_user_own_game/" + game_id, function(data){
+        var truth = $.parseJSON(data);
+        if (truth === true) {
+            window.onbeforeunload = killProc;
+        }
+    })
 });
