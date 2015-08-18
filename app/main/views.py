@@ -50,7 +50,9 @@ def user(username):
     if user is None:
         abort(404)
     posts = user.posts.order_by(Post.timestamp.desc()).all()
-    return render_template('user.html', user=user, posts=posts)
+    games = Game.query.filter_by(player_id=current_user.id).all()
+    games = reversed(games)
+    return render_template('user.html', user=user, posts=posts, games=games)
 
 
 @main.route('/does_user_own_game/<game_id>')

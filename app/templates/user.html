@@ -35,11 +35,34 @@
         </p>
     </div>
 </div>
-<h3>Posts by {{ user.username }}</h3>
-{% include '_post_list.html' %}
-{% if pagination %}
-<div class="pagination">
-    {{ macros.pagination_widget(pagination, '.posts', username=user.username) }}
+<div id="profile-saved-games">
+    <h3>Saved Games</h3>
+    <table class="table table-striped table-hover ">
+        <thead>
+            <tr>
+                <th>Date Created</th>
+                <th>Last Played</th>
+                <th>Continue?</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for game in games %}
+            <tr>
+                <td>{{ game.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
+                <td>{{ game.last_played.strftime("%Y-%m-%d %H:%M") }}</td>
+                <td><a class="btn btn-primary" href="">Continue!</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div id="profile-posts">
+    <h3>Posts by {{ user.username }}</h3>
+    {% include '_post_list.html' %}
+    {% if pagination %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, '.posts', username=user.username) }}
+    </div>
 </div>
 {% endif %}
 {% endblock %}
