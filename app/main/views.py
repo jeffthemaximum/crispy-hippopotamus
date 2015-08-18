@@ -240,10 +240,23 @@ def fen_to_db():
     fen_string = request.args.get('fen_string')
     current_game = get_current_game(current_user)
     current_game.save_board_state(fen_string)
-    return render_template(
-        'user.html',
-        user=current_user,
-        posts=current_user.posts)
+    db.session.commit()
+    if (request.args.get('game_state') == 'ongoing'):
+        return ''
+    else:
+        return render_template(
+            'user.html',
+            user=current_user,
+            posts=current_user.posts)
+
+
+@main.route('/get_board_state/<game_id>')
+@login_required
+def get_board_state(game_id):
+    current_game = Game.query.filter_by(id=game_id).all()
+    current_game = current_game[0]
+    board_state = current_game.fen_state
+    return json.dumps(board_state)
 
 
 @main.route('/killgame')

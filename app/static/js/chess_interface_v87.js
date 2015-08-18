@@ -11,7 +11,16 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
     if (move == null) {
         return 'snapback'
     } else {
+        //move usr piece
         usr_move = source + target
+        //save board state to db
+        $.getJSON('/fen_to_db', {
+            fen_string: game.fen(),
+            game_id: game_id,
+            game_state: 'ongoing'
+        }, function(data) {
+            console.log(data)
+        })
         //post move data to python
         //$.post( "/postmethod/", {javascript_data: usr_move});
         //get usr_move from js to python
@@ -33,6 +42,14 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
             var cpu_move = $.parseJSON(data)
             console.log(cpu_move)
             board.move(cpu_move)
+            //save board state to db
+            $.getJSON('/fen_to_db', {
+                fen_string: game.fen(),
+                game_id: game_id,
+                game_state: 'ongoing'
+            }, function(data) {
+                console.log(data)
+            })
             var cpuMoveFrom = cpu_move.substring(0,2)
             var cpuMoveTo = cpu_move.substring(3,5)
             game.move({
@@ -147,7 +164,11 @@ $(document).ready(function(){
     game = new Chess();
 
     function set_board_state() {
-        board.position(orientation);
+        $.get("/get_board_state/" + game_id, function(data){
+            var board_state = $.parseJSON(data);
+            board_state = board_state.split(" ")[0];
+            board.position(board_state);
+        })
     }
 
     function getGameIdPosts() {
@@ -168,7 +189,8 @@ $(document).ready(function(){
 		data = {'fen_string': game.fen()}
 
 		$.getJSON('/fen_to_db', {
-			fen_string: game.fen()
+			fen_string: game.fen(),
+            game_state: 'done'
 		}, function(data) {
 			console.log(data)
 		})
