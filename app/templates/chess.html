@@ -23,17 +23,18 @@
             {% endif %}
         </table>
     </div>
-    <div id="score" class="tg-wrap"><table class="tg">
+    <div id="score" class="tg-wrap"><table class="table table-striped table-hover ">
       <tr>
-        <th class="tg-031e">Computer Score</th>
-        <th class="tg-031e">Your Score</th>
+        <th>Computer Score</th>
+        <th>Your Score</th>
       </tr>
       <tr>
-        <td class="tg-031e" id="cpu-score">0</td>
-        <td class="tg-031e" id="user-score">0</td>
+        <td id="cpu-score">0</td>
+        <td id="user-score">0</td>
       </tr>
     </table></div>
 </div>
+<br>
 <div>
     {% if current_user.can(Permission.WRITE_ARTICLES) %}
         {{ wtf.quick_form(form) }}
