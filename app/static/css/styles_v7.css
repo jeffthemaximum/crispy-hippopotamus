@@ -49,6 +49,19 @@ div#score{
     vertical-align: top;
 }
 
+div#profile-posts{
+    width: 450px;
+    display: inline-block;
+    float: left;
+}
+
+div#profile-saved-games{
+    width: 400px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+}
+
 .tg  {
     border-collapse:collapse;
     border-spacing:0;
