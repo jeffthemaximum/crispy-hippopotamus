@@ -15,10 +15,12 @@
                 <div class="left" id="board" style="width: 400px"></div>
             </tr>
             <br>
-            <tr>
-                <td style="width: 200px"><a class="btn btn-danger" href="{{ url_for('.killgame') }}">Quit Without Saving</a></td>
-                <td style="width: 200px"><a id="saveAndQuit" class="btn btn-default" href="{{ url_for('.save_and_quit') }}">Save and Quit</a></td>
-            </tr>
+            {% if current_user.is_game_owner(game_id) %}
+                <tr>
+                    <td style="width: 200px"><a class="btn btn-danger" href="{{ url_for('.killgame') }}">Quit Without Saving</a></td>
+                    <td style="width: 200px"><a id="saveAndQuit" class="btn btn-default" href="{{ url_for('.save_and_quit') }}">Save and Quit</a></td>
+                </tr>
+            {% endif %}
         </table>
     </div>
     <div id="score" class="tg-wrap"><table class="tg">
@@ -37,10 +39,12 @@
         {{ wtf.quick_form(form) }}
     {% endif %}
 </div>
-{% include '_post_list.html' %}
-{% if pagination %}
-<div class="pagination">
-    {{ macros.pagination_widget(pagination, '.posts') }}
+<div id="posts_and_pages">
+    {% include '_post_list.html' %}
+    {% if pagination %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, '.posts') }}
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 {% endblock %}

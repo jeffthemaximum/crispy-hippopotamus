@@ -176,6 +176,22 @@ class User(UserMixin, db.Model):
         return '{url}/{hash}?s={size}&d={default}&r={rating}'.format(
             url=url, hash=hash, size=size, default=default, rating=rating)
 
+    # I wrote this function to check if current_user is owner of the chess game
+    # being viewed
+    # because if game belongs to current_user, then "quit" buttons should be
+    # visible
+    # quit buttons should not be visible to other users
+    def is_game_owner(self, game_id):
+        games = Game.query.filter_by(player_id=self.id).all()
+        game_id_array = []
+        game_id = int(game_id)
+        for game in games:
+            game_id_array.append(game.id)
+        if game_id in game_id_array:
+            return True
+        else:
+            return False
+
     def __repr__(self):
         return '<User %r>' % self.username
 

@@ -53,6 +53,12 @@ def user(username):
     return render_template('user.html', user=user, posts=posts)
 
 
+@main.route('/does_user_own_game/<game_id>')
+@login_required
+def does_user_own_game(game_id):
+    return json.dumps(current_user.is_game_owner(game_id))
+
+
 @main.route('/edit-profile', methods=['POST', 'GET'])
 def edit_profile():
     form = EditProfileForm()
@@ -133,13 +139,16 @@ def chess_id(game_id):
         'chess.html',
         form=post_form,
         posts=posts,
-        pagination=pagination)
+        pagination=pagination,
+        game_id=game_id)
 
 
 @main.route('/chess_message/<game_id>', methods=['GET', 'POST'])
 @login_required
 def chess_message(game_id):
     if request.method == 'GET':
+        # I don't think I need this functionality anymore?
+        # seems like all requests to this route are post
         posts = Post.query.filter_by(game_id=game_id).all()
         post_array = []
         for post in posts:
