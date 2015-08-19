@@ -148,7 +148,12 @@ function comparePieceCount(oldFen, newFen){
 }
 
 function killProc() {
-    $.get("/killgame");
+    $.get("/does_user_own_game/" + game_id, function(data){
+        var truth = $.parseJSON(data);
+        if (truth === true) {
+            $.get("/killgame");
+        }
+    })
 }
 
 $(document).ready(function(){
@@ -224,10 +229,6 @@ $(document).ready(function(){
     setInterval(getGameIdPosts, (5 * 1000));
 
     //kill game process when game_player leaves page
-    $.get("/does_user_own_game/" + game_id, function(data){
-        var truth = $.parseJSON(data);
-        if (truth === true) {
-            window.onbeforeunload = killProc;
-        }
-    })
+    window.onbeforeunload = killProc;
+
 });
