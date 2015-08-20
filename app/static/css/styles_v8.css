@@ -60,6 +60,7 @@ div#profile-saved-games{
     height: 100%;
     display: inline-block;
     vertical-align: top;
+    float: right;
 }
 
 .tg  {
