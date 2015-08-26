@@ -23,16 +23,16 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql://jeff:airjeff@localhost/flasky'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/flasky'
 
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql://jeff:airjeff@localhost/flasky'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/flasky'
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql://jeff:airjeff@localhost/flasky'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/flasky'
 
 config = {
     'development': DevelopmentConfig,

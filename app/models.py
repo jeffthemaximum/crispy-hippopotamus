@@ -222,7 +222,7 @@ class Game(db.Model):
 
     def start_playing(self):
         proc = subprocess.Popen(
-            ['/usr/local/bin/gnuchessx'],
+            ['/usr/games/gnuchessx'],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             shell=True

@@ -48,17 +48,18 @@ def register():
         user = User(
             email=form.email.data,
             username=form.username.data,
-            password=form.password.data)
+            password=form.password.data,
+            confirmed = True)
         db.session.add(user)
         db.session.commit()
-        token = user.generate_confirmation_token()
-        send_email(
-            user.email,
-            "Confirm Your Account",
-            'auth/email/confirm',
-            user=user,
-            token=token)
-        flash('A confirmation email has been sent to you by email.')
+       # token = user.generate_confirmation_token()
+       # send_email(
+           # user.email,
+           # "Confirm Your Account",
+          #  'auth/email/confirm',
+         #   user=user,
+        #    token=token)
+        flash('Yoov succesfully registered. You can login now!!!')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', registration_form=form)
 
