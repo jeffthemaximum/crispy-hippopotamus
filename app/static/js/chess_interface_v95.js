@@ -50,6 +50,10 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
                 to: cpuMoveTo,
                 promotion: 'q' //not sure if I need this..
             });
+
+            //for castling
+            board.position(game.fen());
+
             //save game state to db
             $.getJSON('/fen_to_db', {
                 fen_string: game.fen(),
@@ -197,18 +201,18 @@ $(document).ready(function(){
         }
     });
 
-	$('a#saveAndQuit.btn.btn-default').on('click', function() {
-		console.log("Save and quit clicked!");
-		console.log(game.fen());
-		data = {'fen_string': game.fen()}
+    $('a#saveAndQuit.btn.btn-default').on('click', function() {
+        console.log("Save and quit clicked!");
+        console.log(game.fen());
+        data = {'fen_string': game.fen()}
 
-		$.getJSON('/fen_to_db', {
-			fen_string: game.fen(),
+        $.getJSON('/fen_to_db', {
+            fen_string: game.fen(),
             game_state: 'done'
-		}, function(data) {
-			console.log(data)
-		})
-	});
+        }, function(data) {
+            console.log(data)
+        })
+    });
 
     // catch chess-message form when submitted, send user to /chess-message/<game_id>
     $('.form').submit(function(ev) {
