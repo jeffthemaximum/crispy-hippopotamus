@@ -84,6 +84,7 @@ var onDragStart = function(source, piece, position, orientation) {
 // update the board position after the piece snap
 // for castling, en passant, pawn promotion
 var onSnapEnd = function() {
+    console.log("jeff: " + game.fen())
   board.position(game.fen());
 };
 
@@ -92,7 +93,8 @@ var cfg = {
     draggable: true,
     dropOffBoard: 'snapback',
     position: 'start',
-    onDrop: onDrop
+    onDrop: onDrop,
+    onSnapEnd: onSnapEnd
 };
 
 function isLetter(str) {
