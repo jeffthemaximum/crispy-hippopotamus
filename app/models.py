@@ -239,9 +239,18 @@ class Game(db.Model):
         # pu.db
         try:
             os.kill(self.proc_pid, signal.SIGKILL)
-            os.kill(self.proc_pid + 1, signal.SIGKILL)
         except Exception as e:
             print "Process no longer running"
+            print e
+        try:
+            os.kill(self.proc_pid + 1, signal.SIGKILL)
+        except Exception as e:
+            print "Process +1 no longer running"
+            print e
+        try:
+            os.kill(self.proc_pid + 2, signal.SIGKILL)
+        except Exception as e:
+            print "Process +2 no longer running"
             print e
         return True
 
