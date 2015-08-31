@@ -222,7 +222,7 @@ class Game(db.Model):
 
     def start_playing(self):
         proc = subprocess.Popen(
-            ['/usr/local/bin/gnuchessx'],
+            [os.environ.get('GNUCHESS_PATH')],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             shell=True
@@ -240,8 +240,9 @@ class Game(db.Model):
         try:
             os.kill(self.proc_pid, signal.SIGKILL)
             os.kill(self.proc_pid + 1, signal.SIGKILL)
-        except:
+        except Exception as e:
             print "Process no longer running"
+            print e
         return True
 
     def save_board_state(self, fen_string):

@@ -22,7 +22,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-
+    GNUCHESS_PATH = '/usr/local/bin/gnuchessx'
     SQLALCHEMY_DATABASE_URI = 'postgresql://jeff:airjeff@localhost/flasky'
 
 
@@ -32,7 +32,8 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql://jeff:airjeff@localhost/flasky'
+    GNUCHESS_PATH = '/usr/games.gnuchessx'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/flasky'
 
 config = {
     'development': DevelopmentConfig,

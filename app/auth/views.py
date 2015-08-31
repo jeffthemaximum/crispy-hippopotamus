@@ -48,17 +48,20 @@ def register():
         user = User(
             email=form.email.data,
             username=form.username.data,
-            password=form.password.data)
+            password=form.password.data,
+            # get rid of this when smtp works again
+            confirmed=True)
         db.session.add(user)
         db.session.commit()
-        token = user.generate_confirmation_token()
-        send_email(
-            user.email,
-            "Confirm Your Account",
-            'auth/email/confirm',
-            user=user,
-            token=token)
-        flash('A confirmation email has been sent to you by email.')
+        # token = user.generate_confirmation_token()
+        # send_email(
+        #    user.email,
+        #    "Confirm Your Account",
+        #    'auth/email/confirm',
+        #    user=user,
+        #    token=token)
+        # flash('A confirmation email has been sent to you by email.')
+        flash('Yoov succesfully registered. You can login now!!!')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', registration_form=form)
 
@@ -129,8 +132,10 @@ def password_reset_request():
                        'auth/email/reset_password',
                        user=user, token=token,
                        next=request.args.get('next'))
-        flash('An email with instructions to reset your password has been '
-              'sent to you.')
+        # flash('An email with instructions to reset your password has been '
+        #      'sent to you.')
+        flash('Password reset temporarily out of order. \
+            Please email frey.maxim@gmail.com')
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_password.html', form=form)
 
