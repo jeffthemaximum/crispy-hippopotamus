@@ -199,6 +199,7 @@ def get_javascript_data(jsdata):
     current_proc.stdin.flush()
     return jsdata
 
+a bunch of changes ..
 
 # instantiate a GET route to push python data to js
 @main.route('/getpythondata')
