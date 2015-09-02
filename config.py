@@ -32,7 +32,7 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    GNUCHESS_PATH = '/usr/games.gnuchessx'
+    GNUCHESS_PATH = '/usr/games/gnuchessx'
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost/flasky'
 
 config = {

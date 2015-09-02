@@ -199,7 +199,6 @@ def get_javascript_data(jsdata):
     current_proc.stdin.flush()
     return jsdata
 
-a bunch of changes ..
 
 # instantiate a GET route to push python data to js
 @main.route('/getpythondata')
@@ -208,20 +207,22 @@ def get_python_data():
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
     print "hello from gnuchess"
-    for i in range(0, 5):
-        # pu.db
+    # receive output from gnuchess and print to console
+    line = current_proc.stdout.readline().rstrip()
+    while ("My move is" not in line):
+        print "GNU thinking: " + line
         line = current_proc.stdout.readline().rstrip()
-        print line
+    # print line
 
     # append cpu move to list
-        if i == 4:
-            cpu_line = line[-4:]
-            current_game.cpu_moves.append(cpu_line)
-            cpu_line = list(cpu_line)
-            cpu_line.insert(2, "-")
-            cpu_line = "".join(cpu_line)
-            pythondata = cpu_line
-            print"json_move: ", repr(pythondata)
+
+    cpu_line = line[-4:]
+    current_game.cpu_moves.append(cpu_line)
+    cpu_line = list(cpu_line)
+    cpu_line.insert(2, "-")
+    cpu_line = "".join(cpu_line)
+    pythondata = cpu_line
+    print"json_move: ", repr(pythondata)
     print "cpu: ", repr(current_game.cpu_moves)
 
     return json.dumps(pythondata)
