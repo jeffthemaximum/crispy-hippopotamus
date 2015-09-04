@@ -9,7 +9,7 @@
 </div>
 <br>
 <div class="page-time">
-	<p>The local date and time is {{ moment().format('LLL') }}.</p>
-	<p>That was {{ moment().fromNow(refresh=True) }}.</p>
+	<p>The local date and time is {{ moment(current_time).format('LLL') }}.</p>
+	<p>That was {{ moment(current_time).fromNow(refresh=True) }}.</p>
 </div>
 {% endblock %}
