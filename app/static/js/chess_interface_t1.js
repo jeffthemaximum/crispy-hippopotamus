@@ -176,6 +176,7 @@ $(document).ready(function(){
                 draggable: false,
                 position: 'start',
             };
+            setInterval(set_board_state, (5 * 1000));
         }
     })
 
@@ -194,13 +195,13 @@ $(document).ready(function(){
         $('#posts_and_pages').load(document.URL +  ' #posts_and_pages');
     }
 
-    $.get("/does_user_own_game/" + game_id, function(data){
+/*    $.get("/does_user_own_game/" + game_id, function(data){
         var truth = $.parseJSON(data);
         console.log("truth: " + truth);
         if (truth === false) {
             setInterval(set_board_state, (5 * 1000));
         }
-    });
+    });*/
 
     $('a#saveAndQuit.btn.btn-default').on('click', function() {
         console.log("Save and quit clicked!");

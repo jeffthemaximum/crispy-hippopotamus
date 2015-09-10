@@ -163,8 +163,15 @@ function killProc() {
     $.get("/killgame");
 }
 
+function set_viewer_config() {
+    cfg = {
+        draggable: false,
+        position: 'start',
+    };
+    return cfg;
+}
+
 $(document).ready(function(){
-    debugger;
     // check if game belongs to user
     game_id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
@@ -172,10 +179,8 @@ $(document).ready(function(){
         var truth = $.parseJSON(data);
         console.log("truth: " + truth);
         if (truth === false) {
-            cfg = {
-                draggable: false,
-                position: 'start',
-            };
+            cfg = set_viewer_config();
+            setInterval(set_board_state, (5 * 1000));
         }
     })
 
@@ -193,14 +198,6 @@ $(document).ready(function(){
     function getGameIdPosts() {
         $('#posts_and_pages').load(document.URL +  ' #posts_and_pages');
     }
-
-    $.get("/does_user_own_game/" + game_id, function(data){
-        var truth = $.parseJSON(data);
-        console.log("truth: " + truth);
-        if (truth === false) {
-            setInterval(set_board_state, (5 * 1000));
-        }
-    });
 
     $('a#saveAndQuit.btn.btn-default').on('click', function() {
         console.log("Save and quit clicked!");

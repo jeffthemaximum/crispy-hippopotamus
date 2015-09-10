@@ -258,8 +258,8 @@ def fen_to_db():
 @main.route('/get_board_state/<game_id>')
 @login_required
 def get_board_state(game_id):
-    current_game = Game.query.filter_by(id=game_id).all()
-    current_game = current_game[0]
+    current_games = Game.query.filter_by(id=game_id).all()
+    current_game = current_games[0]
     board_state = current_game.fen_state
     return json.dumps(board_state)
 
