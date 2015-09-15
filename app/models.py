@@ -219,14 +219,21 @@ class Game(db.Model):
     # Games have one player and many posts
     player_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     posts = db.relationship('Post', backref='game', lazy='dynamic')
+    ai = db.Column(db.String(128))
 
     def start_playing(self):
-        proc = subprocess.Popen(
-            [os.environ.get('GNUCHESS_PATH')],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            shell=True
-        )
+        if self.ai == "GNU chess":
+            proc = subprocess.Popen(
+                [os.environ.get('GNUCHESS_PATH'), '--post'],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+            )
+        if self.ai == "Crafty":
+            proc = subprocess.Popen(
+                [os.environ.get('CRAFTY_PATH'), "time sd/15"],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+            )
         self.proc_pid = proc.pid
         print self.proc_pid
         return proc

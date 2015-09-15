@@ -8,23 +8,23 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
         promotion: 'q' //not sure if I need this..
     });
 
-    if (move == null) {
-        return 'snapback'
+    if (move === null) {
+        return 'snapback';
     } else {
         //move usr piece
-        usr_move = source + target
+        usr_move = source + target;
         //save board state to db
         $.getJSON('/fen_to_db', {
             fen_string: game.fen(),
             game_id: game_id,
             game_state: 'ongoing'
         }, function(data) {
-            console.log(data)
-        })
+            console.log(data);
+        });
         //post move data to python
         //$.post( "/postmethod/", {javascript_data: usr_move});
         //get usr_move from js to python
-        $.get("/getmethod/<" + usr_move + ">")
+        $.get("/getmethod/<" + usr_move + ">");
         orientation = orientation;
         console.log("usrmove: " + usr_move);
         console.log("New position: " + game.fen());
@@ -37,31 +37,40 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
         var currentUserScore = parseInt($("#user-score").text());
         $("#user-score").text(currentUserScore + whiteScoreData);
 
-        $.get("/getpythondata", function(data){
+        var bloatedFunction = function(data){
             orientation = orientation;
-            var cpu_move = $.parseJSON(data)
-            console.log(cpu_move)
-            board.move(cpu_move)
+            var cpu_move = $.parseJSON(data);
+            console.log(cpu_move);
+/*          //old logic to parse AI coordinate move
+            var cpuMoveFrom = cpu_move.substring(0,2);
+            var cpuMoveTo = cpu_move.substring(3,5);
 
-            var cpuMoveFrom = cpu_move.substring(0,2)
-            var cpuMoveTo = cpu_move.substring(3,5)
+            //change this to accept SAN!!!!
             game.move({
                 from: cpuMoveFrom,
                 to: cpuMoveTo,
                 promotion: 'q' //not sure if I need this..
-            });
+            });*/
 
-            //for castling
-            board.position(game.fen());
+            //new logic to use SAN string move from AI to move in js
+
+            //move game
+            game.move(cpu_move);
+
+            //old logic to move by coordinate, replaced by game.move(cpu_move)
+            //where cpu_move is now SAN string
+            //board.move(cpu_move);
+
+            //move board
+            board_state = game.fen().split(" ")[0];
+            board.position(board_state);
 
             //save game state to db
-            $.getJSON('/fen_to_db', {
+            $.get('/fen_to_db', {
                 fen_string: game.fen(),
                 game_id: game_id,
                 game_state: 'ongoing'
-            }, function(data) {
-                console.log(data)
-            })
+            });
 
             console.log("cpumove: " + cpu_move);
             console.log("New position: " + game.fen());
@@ -73,7 +82,9 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
             console.log("black score: " + blackScoreData);
             var currentCPUScore = parseInt($("#cpu-score").text());
             $("#cpu-score").text(currentCPUScore + blackScoreData);
-        })
+        };
+
+        $.get("/getpythondata", bloatedFunction);
     }
 };
 
@@ -88,7 +99,7 @@ var onDragStart = function(source, piece, position, orientation) {
 // update the board position after the piece snap
 // for castling, en passant, pawn promotion
 var onSnapEnd = function() {
-    console.log("jeff: " + game.fen())
+    console.log("jeff: " + game.fen());
   board.position(game.fen());
 };
 
@@ -123,7 +134,7 @@ function pieceCount(fenStr) {
     };
     for (var i = 0; i < fenStr.length; i++){
         if (isLetter(fenStr[i])) {
-            pieceCount[fenStr[i]] += 1
+            pieceCount[fenStr[i]] += 1;
         }
     }
     return pieceCount;
@@ -142,11 +153,11 @@ function comparePieceCount(oldFen, newFen){
         'n': 3,
         'r': 5,
         'q': 9
-    }
-    for(key in oldFenPieces){
+    };
+    for(var key in oldFenPieces){
         if (oldFenPieces[key] != newFenPieces[key]){
             var difference = newFenPieces[key] - oldFenPieces[key];
-            console.log("piece: " + key + " old count: " + oldFenPieces[key] + " new count: " + newFenPieces[key])
+            console.log("piece: " + key + " old count: " + oldFenPieces[key] + " new count: " + newFenPieces[key]);
             //if piece is lowercase it's a black piece
             if (key == key.toLowerCase()) {
                 whiteScore += pointValues[key];
@@ -156,11 +167,19 @@ function comparePieceCount(oldFen, newFen){
             }
         }
     }
-    return {'whiteScore': whiteScore, 'blackScore': blackScore}
+    return {'whiteScore': whiteScore, 'blackScore': blackScore};
 }
 
 function killProc() {
     $.get("/killgame");
+}
+
+function set_viewer_config() {
+    cfg = {
+        draggable: false,
+        position: 'start',
+    };
+    return cfg;
 }
 
 $(document).ready(function(){
@@ -171,12 +190,10 @@ $(document).ready(function(){
         var truth = $.parseJSON(data);
         console.log("truth: " + truth);
         if (truth === false) {
-            cfg = {
-                draggable: false,
-                position: 'start',
-            };
+            cfg = set_viewer_config();
+            setInterval(set_board_state, (5 * 1000));
         }
-    })
+    });
 
     board = new ChessBoard('board', cfg);
     game = new Chess();
@@ -186,32 +203,24 @@ $(document).ready(function(){
             var board_state = $.parseJSON(data);
             board_state = board_state.split(" ")[0];
             board.position(board_state);
-        })
+        });
     }
 
     function getGameIdPosts() {
         $('#posts_and_pages').load(document.URL +  ' #posts_and_pages');
     }
 
-    $.get("/does_user_own_game/" + game_id, function(data){
-        var truth = $.parseJSON(data);
-        console.log("truth: " + truth);
-        if (truth === false) {
-            setInterval(set_board_state, (5 * 1000));
-        }
-    });
-
     $('a#saveAndQuit.btn.btn-default').on('click', function() {
         console.log("Save and quit clicked!");
         console.log(game.fen());
-        data = {'fen_string': game.fen()}
+        data = {'fen_string': game.fen()};
 
         $.getJSON('/fen_to_db', {
             fen_string: game.fen(),
             game_state: 'done'
         }, function(data) {
-            console.log(data)
-        })
+            console.log(data);
+        });
     });
 
     // catch chess-message form when submitted, send user to /chess-message/<game_id>
@@ -241,6 +250,6 @@ $(document).ready(function(){
         if (truth === true) {
             window.onbeforeunload = killProc;
         }
-    })
+    });
 
 });

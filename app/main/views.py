@@ -7,8 +7,9 @@ from .. import db
 from ..models import User, Role, Post, Permission, Game
 from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
-from .forms import StartChessForm
+from .forms import StartChessForm, AI_CHOICES
 import json
+import pudb
 
 # of form {pid : subprocess}
 proc_dict = {}
@@ -111,8 +112,10 @@ def edit_profile_admin(id):
 def chess():
     form = StartChessForm()
     if form.validate_on_submit():
+        # get AI choice
+        ai = dict(AI_CHOICES).get(form.ai.data)
         # instantiante game object
-        game = Game(player_id=current_user.id)
+        game = Game(player_id=current_user.id, ai=ai)
         # start playing, save proc
         proc = game.start_playing()
         # add game to db and assign to user
@@ -138,12 +141,14 @@ def chess_id(game_id):
     page = request.args.get('page', 1, type=int)
     pagination = get_pagination_for_game_id(page, game_id)
     posts = get_posts_to_display(request, pagination)
+    ai = Game.query.filter_by(id=game_id).first().ai
     return render_template(
         'chess.html',
         form=post_form,
         posts=posts,
         pagination=pagination,
-        game_id=game_id)
+        game_id=game_id,
+        ai=ai)
 
 
 @main.route('/chess_message/<game_id>', methods=['GET', 'POST'])
@@ -206,21 +211,34 @@ def get_python_data():
     # gets current proc by finding user's most recent game...
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
-    print "hello from gnuchess"
-    for i in range(0, 5):
-        # pu.db
-        line = current_proc.stdout.readline().rstrip()
-        print line
+    print "hello from AI"
+    # receive output from gnuchess and print to console
+    line = current_proc.stdout.readline().rstrip()
+    # for gnu chess
+    if current_game.ai == "GNU chess":
+        while ("My move is" not in line):
+            print "AI thinking: " + line
+            line = current_proc.stdout.readline().rstrip()
+    # for crafty
+    if current_game.ai == "Crafty":
+        while ("Black" not in line):
+            print "AI thinking: " + line
+            line = current_proc.stdout.readline().rstrip()
 
-    # append cpu move to list
-        if i == 4:
-            cpu_line = line[-4:]
-            current_game.cpu_moves.append(cpu_line)
-            cpu_line = list(cpu_line)
-            cpu_line.insert(2, "-")
-            cpu_line = "".join(cpu_line)
-            pythondata = cpu_line
-            print"json_move: ", repr(pythondata)
+    # old logic to get moves from AI as coordinates
+    # cpu_line = line[-4:]
+    # current_game.cpu_moves.append(cpu_line)
+    # cpu_line = list(cpu_line)
+    # cpu_line.insert(2, "-")
+    # cpu_line = "".join(cpu_line)
+    # pythondata = cpu_line
+
+    # new logic to get move from AI as SAN string
+    colon_index = line.index(":")
+    line_length = len(line)
+    pythondata = line[(colon_index + 2):(line_length)]
+
+    print"json_move: ", repr(pythondata)
     print "cpu: ", repr(current_game.cpu_moves)
 
     return json.dumps(pythondata)
@@ -256,8 +274,8 @@ def fen_to_db():
 @main.route('/get_board_state/<game_id>')
 @login_required
 def get_board_state(game_id):
-    current_game = Game.query.filter_by(id=game_id).all()
-    current_game = current_game[0]
+    current_games = Game.query.filter_by(id=game_id).all()
+    current_game = current_games[0]
     board_state = current_game.fen_state
     return json.dumps(board_state)
 
