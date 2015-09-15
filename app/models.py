@@ -220,12 +220,19 @@ class Game(db.Model):
     player_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     posts = db.relationship('Post', backref='game', lazy='dynamic')
 
-    def start_playing(self):
-        proc = subprocess.Popen(
-            [os.environ.get('GNUCHESS_PATH'), '--post'],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-        )
+    def start_playing(self, ai):
+        if ai is "gnuchess":
+            proc = subprocess.Popen(
+                [os.environ.get('GNUCHESS_PATH'), '--post'],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+            )
+        if ai is "crafty":
+            proc = subprocess.Popen(
+                [os.environ.get('CRAFTY_PATH'), "time sd/15"],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+            )
         self.proc_pid = proc.pid
         print self.proc_pid
         return proc
