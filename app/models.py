@@ -222,13 +222,13 @@ class Game(db.Model):
     ai = db.Column(db.String(128))
 
     def start_playing(self):
-        if self.ai is "GNU chess":
+        if self.ai == "GNU chess":
             proc = subprocess.Popen(
                 [os.environ.get('GNUCHESS_PATH'), '--post'],
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
             )
-        if self.ai is "Crafty":
+        if self.ai == "Crafty":
             proc = subprocess.Popen(
                 [os.environ.get('CRAFTY_PATH'), "time sd/15"],
                 stdin=subprocess.PIPE,

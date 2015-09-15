@@ -141,12 +141,14 @@ def chess_id(game_id):
     page = request.args.get('page', 1, type=int)
     pagination = get_pagination_for_game_id(page, game_id)
     posts = get_posts_to_display(request, pagination)
+    ai = Game.query.filter_by(id=game_id).first().ai
     return render_template(
         'chess.html',
         form=post_form,
         posts=posts,
         pagination=pagination,
-        game_id=game_id)
+        game_id=game_id,
+        ai=ai)
 
 
 @main.route('/chess_message/<game_id>', methods=['GET', 'POST'])
@@ -212,9 +214,8 @@ def get_python_data():
     print "hello from AI"
     # receive output from gnuchess and print to console
     line = current_proc.stdout.readline().rstrip()
-
     # for gnu chess
-    if current_game.ai == "GNU Chess":
+    if current_game.ai == "GNU chess":
         while ("My move is" not in line):
             print "AI thinking: " + line
             line = current_proc.stdout.readline().rstrip()
