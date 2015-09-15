@@ -207,11 +207,11 @@ def get_python_data():
     # gets current proc by finding user's most recent game...
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
-    print "hello from gnuchess"
+    print "hello from AI"
     # receive output from gnuchess and print to console
     line = current_proc.stdout.readline().rstrip()
-    while ("My move is" not in line):
-        print "GNU thinking: " + line
+    while ("My move is" not in line or "Black" not in line):
+        print "AI thinking: " + line
         line = current_proc.stdout.readline().rstrip()
 
     # old logic to get moves from AI as coordinates

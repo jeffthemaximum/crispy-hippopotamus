@@ -1,0 +1,17 @@
+
+Crafty v24.1 (1 cpus)
+
+White(1): a2a4
+              time used:   2.56
+        time surplus   0.00  time limit 30.00 (3:00)
+        depth     time       score   variation (1)
+         16     1.14/24.90   -0.33   1. ... Nc6 2. Nf3 Nf6 3. Nc3 e5 4. e3 e4
+                                     5. Nd4 Bc5 6. Nxc6 dxc6 7. Be2 O-O 8. O-O
+                                     Be6 9. d4
+         16->   1.40/22.20   -0.33   1. ... Nc6 2. Nf3 Nf6 3. Nc3 e5 4. e3 e4
+                                     5. Nd4 Bc5 6. Nxc6 dxc6 7. Be2 O-O 8. O-O
+                                     Be6 9. d4
+         17     1.73/30.00      ++   1. ... Nc6? (>-0.17)                  
+         17     2.15/30.00   -0.13   1. ... Nc6 2. Nf3 Nf6 3. Nc3 e5 4. e4 Bc5
+                                     5. Bb5 O-O 6. O-O d6 7. d3 Nd4 8. Nxd4
+                                     Bxd4 9. Be3 Bg4
