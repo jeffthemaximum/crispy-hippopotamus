@@ -4,11 +4,11 @@
 Crafty v24.1 (1 cpus)
 
 White(1): d2d4
-              time used:   4.77
+              time used:   3.43
                book moves {Nf6, d5}
                book   0.0s     68%    Nf6 c4
 Black(1): Nf6
-              time used:   0.01
+              time used:   0.00
 
        +---+---+---+---+---+---+---+---+
     8  |<R>|<N>|<B>|<Q>|<K>|<B>|   |<R>|

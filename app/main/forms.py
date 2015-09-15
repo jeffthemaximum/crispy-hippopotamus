@@ -5,6 +5,9 @@ from wtforms.validators import Required, Length, Email, Regexp
 from ..models import Role, User
 
 
+AI_CHOICES = [('1', 'GNU chess'), ('2', 'Crafty')]
+
+
 class NameForm(Form):
     name = StringField('Whats yur namez?', validators=[Required()])
     submit = SubmitField('Submit')
@@ -59,4 +62,5 @@ class PostForm(Form):
 
 
 class StartChessForm(Form):
+    ai = SelectField(u'AI Choice', choices=AI_CHOICES)
     submit = SubmitField('Start Playing Chess!!')

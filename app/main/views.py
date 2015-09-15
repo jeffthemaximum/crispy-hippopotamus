@@ -7,7 +7,7 @@ from .. import db
 from ..models import User, Role, Post, Permission, Game
 from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
-from .forms import StartChessForm
+from .forms import StartChessForm, AI_CHOICES
 import json
 import pudb
 
@@ -112,8 +112,10 @@ def edit_profile_admin(id):
 def chess():
     form = StartChessForm()
     if form.validate_on_submit():
+        # get AI choice
+        ai = dict(AI_CHOICES).get(form.ai.data)
         # instantiante game object
-        game = Game(player_id=current_user.id)
+        game = Game(player_id=current_user.id, ai=ai)
         # start playing, save proc
         proc = game.start_playing()
         # add game to db and assign to user
@@ -210,9 +212,17 @@ def get_python_data():
     print "hello from AI"
     # receive output from gnuchess and print to console
     line = current_proc.stdout.readline().rstrip()
-    while ("My move is" not in line or "Black" not in line):
-        print "AI thinking: " + line
-        line = current_proc.stdout.readline().rstrip()
+
+    # for gnu chess
+    if current_game.ai == "GNU Chess":
+        while ("My move is" not in line):
+            print "AI thinking: " + line
+            line = current_proc.stdout.readline().rstrip()
+    # for crafty
+    if current_game.ai == "Crafty":
+        while ("Black" not in line):
+            print "AI thinking: " + line
+            line = current_proc.stdout.readline().rstrip()
 
     # old logic to get moves from AI as coordinates
     # cpu_line = line[-4:]
