@@ -213,16 +213,20 @@ def get_python_data():
     while ("My move is" not in line):
         print "GNU thinking: " + line
         line = current_proc.stdout.readline().rstrip()
-    # print line
 
-    # append cpu move to list
+    # old logic to get moves from AI as coordinates
+    # cpu_line = line[-4:]
+    # current_game.cpu_moves.append(cpu_line)
+    # cpu_line = list(cpu_line)
+    # cpu_line.insert(2, "-")
+    # cpu_line = "".join(cpu_line)
+    # pythondata = cpu_line
 
-    cpu_line = line[-4:]
-    current_game.cpu_moves.append(cpu_line)
-    cpu_line = list(cpu_line)
-    cpu_line.insert(2, "-")
-    cpu_line = "".join(cpu_line)
-    pythondata = cpu_line
+    # new logic to get move from AI as SAN string
+    colon_index = line.index(":")
+    line_length = len(line)
+    pythondata = line[(colon_index + 2):(line_length)]
+
     print"json_move: ", repr(pythondata)
     print "cpu: ", repr(current_game.cpu_moves)
 

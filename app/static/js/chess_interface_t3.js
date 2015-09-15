@@ -41,18 +41,29 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
             orientation = orientation;
             var cpu_move = $.parseJSON(data);
             console.log(cpu_move);
-            board.move(cpu_move);
-
+/*          //old logic to parse AI coordinate move
             var cpuMoveFrom = cpu_move.substring(0,2);
             var cpuMoveTo = cpu_move.substring(3,5);
+
+            //change this to accept SAN!!!!
             game.move({
                 from: cpuMoveFrom,
                 to: cpuMoveTo,
                 promotion: 'q' //not sure if I need this..
-            });
+            });*/
 
-            //for castling
-            board.position(game.fen());
+            //new logic to use SAN string move from AI to move in js
+
+            //move game
+            game.move(cpu_move);
+
+            //old logic to move by coordinate, replaced by game.move(cpu_move)
+            //where cpu_move is now SAN string
+            //board.move(cpu_move);
+
+            //move board
+            board_state = game.fen().split(" ")[0];
+            board.position(board_state);
 
             //save game state to db
             $.get('/fen_to_db', {
