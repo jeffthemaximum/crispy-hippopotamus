@@ -190,6 +190,12 @@ def get_game_id():
 def get_javascript_data(jsdata):
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
+
+    if current_game.ai == "Crafty":
+        inp = "ponder off\n"
+        current_proc.stdin.write(inp)
+        current_proc.stdin.flush()
+
     jsdata = jsdata[1:5]
     inp = jsdata + "\n"
     print 'sending:', repr(inp)
