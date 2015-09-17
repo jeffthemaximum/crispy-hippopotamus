@@ -1,15 +1,15 @@
 import os
-from app import create_app, db
+from app import create_app, db, socketio
 from app.models import User, Role, Game
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
-from flask.ext.socketio import SocketIO
+# from flask.ext.socketio import SocketIO
 from flask import current_app
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
 migrate = Migrate(app, db)
-socketio = SocketIO(app)
+# socketio = SocketIO(app)
 
 
 def make_shell_context():
@@ -32,7 +32,7 @@ def run():
     socketio.run(
         current_app,
         host='127.0.0.1',
-        port=5000,
+        port=8000,
         use_reloader=False)
 
 

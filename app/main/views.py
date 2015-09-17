@@ -3,7 +3,7 @@ from flask import render_template, redirect, url_for
 from flask import flash, abort, request, current_app
 from flask.ext.login import current_user, login_required
 from . import main
-from .. import db
+from .. import db, socketio
 from ..models import User, Role, Post, Permission, Game
 from ..decorators import admin_required
 from .forms import EditProfileForm, EditProfileAdminForm, PostForm
@@ -13,6 +13,17 @@ import pudb
 
 # of form {pid : subprocess}
 proc_dict = {}
+
+
+@main.route("/hello")
+def hello():
+    return render_template('hello.html',)
+
+
+@socketio.on('send_message')
+def handle_source(json_data):
+    text = json_data['message'].encode('ascii', 'ignore')
+    socketio.emit('echo', {'echo': 'Server Says: ' + text})
 
 
 @main.route('/')

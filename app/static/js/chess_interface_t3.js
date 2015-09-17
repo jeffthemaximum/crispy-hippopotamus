@@ -13,7 +13,10 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
     } else {
         //move usr piece
         usr_move = source + target;
-        //save board state to db
+
+
+
+        //save board state to db - crashed gunicorn server when running socketio worker
 /*        $.getJSON('/fen_to_db', {
             fen_string: game.fen(),
             game_id: game_id,
@@ -21,8 +24,9 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
         }, function(data) {
             console.log(data);
         });*/
-        //post move data to python
-        //$.post( "/postmethod/", {javascript_data: usr_move});
+
+
+
         //get usr_move from js to python
         $.get("/getmethod/<" + usr_move + ">");
         orientation = orientation;
