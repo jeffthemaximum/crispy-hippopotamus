@@ -188,6 +188,7 @@ def get_game_id():
 @main.route('/getmethod/<jsdata>')
 @login_required
 def get_javascript_data(jsdata):
+
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
 
@@ -233,7 +234,6 @@ def get_python_data():
 
     # old logic to get moves from AI as coordinates
     # cpu_line = line[-4:]
-    # current_game.cpu_moves.append(cpu_line)
     # cpu_line = list(cpu_line)
     # cpu_line.insert(2, "-")
     # cpu_line = "".join(cpu_line)
@@ -243,10 +243,10 @@ def get_python_data():
     colon_index = line.index(":")
     line_length = len(line)
     pythondata = line[(colon_index + 2):(line_length)]
+    current_game.cpu_moves.append(pythondata)
 
     print"json_move: ", repr(pythondata)
     print "cpu: ", repr(current_game.cpu_moves)
-
     return json.dumps(pythondata)
 
 

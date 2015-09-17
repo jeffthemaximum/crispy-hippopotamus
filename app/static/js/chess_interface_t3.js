@@ -14,13 +14,13 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
         //move usr piece
         usr_move = source + target;
         //save board state to db
-        $.getJSON('/fen_to_db', {
+/*        $.getJSON('/fen_to_db', {
             fen_string: game.fen(),
             game_id: game_id,
             game_state: 'ongoing'
         }, function(data) {
             console.log(data);
-        });
+        });*/
         //post move data to python
         //$.post( "/postmethod/", {javascript_data: usr_move});
         //get usr_move from js to python
