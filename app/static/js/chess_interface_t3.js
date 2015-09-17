@@ -44,6 +44,7 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
         var bloatedFunction = function(data){
             orientation = orientation;
             var cpu_move = $.parseJSON(data);
+            send();
             console.log(cpu_move);
 /*          //old logic to parse AI coordinate move
             var cpuMoveFrom = cpu_move.substring(0,2);

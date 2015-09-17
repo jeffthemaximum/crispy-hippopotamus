@@ -22,8 +22,8 @@ def hello():
 
 @socketio.on('send_message')
 def handle_source(json_data):
-    text = json_data['message'].encode('ascii', 'ignore')
-    socketio.emit('echo', {'echo': 'Server Says: ' + text})
+    # text = json_data['message'].encode('ascii', 'ignore')
+    socketio.emit('echo', {'echo': 'Server Says: ' + json_data})
 
 
 @main.route('/')
@@ -227,19 +227,23 @@ def get_javascript_data(jsdata):
 @main.route('/getpythondata')
 def get_python_data():
     # gets current proc by finding user's most recent game...
+
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
     print "hello from AI"
     # receive output from gnuchess and print to console
     line = current_proc.stdout.readline().rstrip()
+    handle_source(line)
     # for gnu chess
     if current_game.ai == "GNU chess":
         while ("My move is" not in line):
+            handle_source(line)
             print "AI thinking: " + line
             line = current_proc.stdout.readline().rstrip()
     # for crafty
     if current_game.ai == "Crafty":
         while ("Black" not in line):
+            handle_source(line)
             print "AI thinking: " + line
             line = current_proc.stdout.readline().rstrip()
 
