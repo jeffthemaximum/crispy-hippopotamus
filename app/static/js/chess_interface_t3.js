@@ -1,5 +1,10 @@
 var orientation;
 
+var move_board = function(game) {
+    board_state = game.fen().split(" ")[0];
+    board.position(board_state);
+};
+
 var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 
     var move = game.move({
@@ -44,7 +49,7 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
         var bloatedFunction = function(data){
             orientation = orientation;
             var cpu_move = $.parseJSON(data);
-            send();
+            //send();
             console.log(cpu_move);
 /*          //old logic to parse AI coordinate move
             var cpuMoveFrom = cpu_move.substring(0,2);
@@ -67,8 +72,7 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
             //board.move(cpu_move);
 
             //move board
-            board_state = game.fen().split(" ")[0];
-            board.position(board_state);
+            move_board(game);
 
             //save game state to db
             $.get('/fen_to_db', {

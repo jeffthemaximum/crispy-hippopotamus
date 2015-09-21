@@ -21,9 +21,13 @@ def hello():
 
 
 @socketio.on('send_message')
-def handle_source(json_data):
+def handle_source(json_data, game_id):
     # text = json_data['message'].encode('ascii', 'ignore')
-    socketio.emit('echo', {'echo': 'Server Says: ' + json_data})
+    print "hi"
+    socketio.emit(
+        'echo',
+        {'echo': 'Server Says: ' + str(json_data)},
+        namespace='/chess/' + str(game_id))
 
 
 @main.route('/')
@@ -231,19 +235,20 @@ def get_python_data():
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
     print "hello from AI"
+    pu.db
     # receive output from gnuchess and print to console
     line = current_proc.stdout.readline().rstrip()
-    handle_source(line)
+    handle_source(line, current_game.id)
     # for gnu chess
     if current_game.ai == "GNU chess":
         while ("My move is" not in line):
-            handle_source(line)
+            handle_source(line, current_game.id)
             print "AI thinking: " + line
             line = current_proc.stdout.readline().rstrip()
     # for crafty
     if current_game.ai == "Crafty":
         while ("Black" not in line):
-            handle_source(line)
+            handle_source(line, current_game.id)
             print "AI thinking: " + line
             line = current_proc.stdout.readline().rstrip()
 
