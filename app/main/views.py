@@ -15,6 +15,11 @@ import pudb
 proc_dict = {}
 
 
+@socketio.on('connect', namespace='/')
+def connect():
+    socketio.emit('echo', 'connected')
+
+
 @main.route("/hello")
 def hello():
     return render_template('hello.html',)
@@ -26,8 +31,7 @@ def handle_source(json_data, game_id):
     print "hi"
     socketio.emit(
         'echo',
-        {'echo': 'Server Says: ' + str(json_data)},
-        namespace='/chess/' + str(game_id))
+        {'echo': 'Server Says: ' + str(json_data)})
 
 
 @main.route('/')
@@ -235,7 +239,7 @@ def get_python_data():
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
     print "hello from AI"
-    pu.db
+
     # receive output from gnuchess and print to console
     line = current_proc.stdout.readline().rstrip()
     handle_source(line, current_game.id)

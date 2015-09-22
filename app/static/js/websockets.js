@@ -1,6 +1,7 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 socket.on('echo', function(data){
-    $('#response').html('<p>'+data.echo+'</p>');
+    console.log("socket: ", data)
+    $('#response').prepend('<li>' + data.echo + "</li>");
 });
 
 socket.on('cpu', function(data){
@@ -10,3 +11,7 @@ socket.on('cpu', function(data){
 function send(){
     socket.emit('send_message', {message : "hello, world"});
 }
+
+socket.on('connect', function() {
+    socket.emit('echo', {message: "connected"});
+})
