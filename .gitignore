@@ -43,3 +43,9 @@ venv
 
 #aws key
 aws.pem
+
+#various failures
+flasky.sublime-project
+flasky.sublime-workspace
+chess_errors.txt
+hello.py
