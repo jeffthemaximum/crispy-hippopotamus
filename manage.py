@@ -9,7 +9,7 @@ from flask import current_app
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
 migrate = Migrate(app, db)
-# socketio = SocketIO(app)
+socketio = SocketIO(app)
 
 
 def make_shell_context():
