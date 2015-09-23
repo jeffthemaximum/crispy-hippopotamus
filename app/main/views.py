@@ -10,6 +10,8 @@ from .forms import EditProfileForm, EditProfileAdminForm, PostForm
 from .forms import StartChessForm, AI_CHOICES
 import json
 import pudb
+import gevent
+# gevent.monkey.patch_all()
 
 # of form {pid : subprocess}
 proc_dict = {}
@@ -28,10 +30,9 @@ def hello():
 @socketio.on('send_message')
 def handle_source(json_data, game_id):
     # text = json_data['message'].encode('ascii', 'ignore')
-    print "hi"
     socketio.emit(
         'echo',
-        {'echo': 'Server Says: ' + str(json_data)})
+        {'echo': str(json_data)})
 
 
 @main.route('/')
@@ -231,28 +232,36 @@ def get_javascript_data(jsdata):
     return jsdata
 
 
+def emit(line):
+    socketio.emit('echo', {'echo': line})
+    # time.sleep(.01)
+
+
 # instantiate a GET route to push python data to js
 @main.route('/getpythondata')
 def get_python_data():
     # gets current proc by finding user's most recent game...
-
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
     print "hello from AI"
 
     # receive output from gnuchess and print to console
     line = current_proc.stdout.readline().rstrip()
-    handle_source(line, current_game.id)
+
     # for gnu chess
     if current_game.ai == "GNU chess":
         while ("My move is" not in line):
-            handle_source(line, current_game.id)
+            socketio.emit('echo', {'echo': line})
+            # time.sleep(.01)
+            gevent.sleep(0)
             print "AI thinking: " + line
             line = current_proc.stdout.readline().rstrip()
     # for crafty
     if current_game.ai == "Crafty":
         while ("Black" not in line):
-            handle_source(line, current_game.id)
+            socketio.emit(
+                'echo',
+                {'echo': line})
             print "AI thinking: " + line
             line = current_proc.stdout.readline().rstrip()
 

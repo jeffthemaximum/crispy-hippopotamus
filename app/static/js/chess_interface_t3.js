@@ -39,8 +39,12 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
         console.log("New position: " + game.fen());
         console.log("Old position: " + ChessBoard.objToFen(oldPos));
         console.log("Orientation: " + orientation);
+        var secondsBefore = new Date().getTime();
         var whiteScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['whiteScore'];
         var blackScoreData = comparePieceCount(ChessBoard.objToFen(oldPos), game.fen())['blackScore'];
+        var secondsAfter = new Date().getTime();
+        var functionTime = secondsAfter - secondsBefore;
+        console.log("time: " + functionTime);
         console.log("white score: " + whiteScoreData);
         console.log("black score: " + blackScoreData);
         var currentUserScore = parseInt($("#user-score").text());
@@ -75,11 +79,11 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
             move_board(game);
 
             //save game state to db
-            $.get('/fen_to_db', {
+/*            $.get('/fen_to_db', {
                 fen_string: game.fen(),
                 game_id: game_id,
                 game_state: 'ongoing'
-            });
+            });*/
 
             console.log("cpumove: " + cpu_move);
             console.log("New position: " + game.fen());

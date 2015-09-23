@@ -33,7 +33,7 @@ def run():
         current_app,
         host='127.0.0.1',
         port=8000,
-        use_reloader=False)
+        use_reloader=True)
 
 
 if __name__ == '__main__':
