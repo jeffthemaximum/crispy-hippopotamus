@@ -5,7 +5,7 @@ from wtforms.validators import Required, Length, Email, Regexp
 from ..models import Role, User
 
 
-AI_CHOICES = [('1', 'GNU chess'), ('2', 'Crafty')]
+AI_CHOICES = [('1', 'GNU chess'), ('2', 'Crafty'), ('3', 'Simontacchi')]
 
 
 class NameForm(Form):
