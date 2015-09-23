@@ -235,7 +235,8 @@ class Game(db.Model):
                 stdout=subprocess.PIPE,
             )
         if self.ai == "Simontacchi":
-            os.chdir("/Users/jeff/Dropbox/projects/Simontacchi/src")
+            simon_path = os.environ.get('SIMONTACCHI_PATH')
+            os.chdir(simon_path)
             proc = subprocess.Popen(
                 './simontacchi',
                 stdin=subprocess.PIPE,
