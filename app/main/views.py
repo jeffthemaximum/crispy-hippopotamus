@@ -232,50 +232,46 @@ def get_javascript_data(jsdata):
     return jsdata
 
 
-def emit(line):
-    socketio.emit('echo', {'echo': line})
-    # time.sleep(.01)
+def get_line_from_ai(keyword, current_proc):
+    line = current_proc.stdout.readline().rstrip()
+    while (keyword not in line):
+        socketio.emit(
+            'echo',
+            {'echo': line})
+        gevent.sleep(0)
+        print "AI thinking: " + line
+        line = current_proc.stdout.readline().rstrip()
+    return line
+
+
+def get_move_from_ai(line, key_char):
+    key_char_index = line.index(key_char)
+    line_length = len(line)
+    pythondata = line[(key_char_index + 2):(line_length)]
+    return pythondata
 
 
 # instantiate a GET route to push python data to js
 @main.route('/getpythondata')
 def get_python_data():
+    keywords = {
+        "GNU chess": "My move is",
+        "Crafty": "Black",
+        "Simontacchi": "move"}
+
+    key_chars = {
+        "GNU chess": ":",
+        "Crafty": ":",
+        "Simontacchi": "e"}
+
     # gets current proc by finding user's most recent game...
     current_game = get_current_game(current_user)
     current_proc = get_current_proc(current_game)
     print "hello from AI"
 
-    # receive output from gnuchess and print to console
-    line = current_proc.stdout.readline().rstrip()
+    line = get_line_from_ai(keywords[current_game.ai], current_proc)
 
-    # for gnu chess
-    if current_game.ai == "GNU chess":
-        while ("My move is" not in line):
-            socketio.emit('echo', {'echo': line})
-            # time.sleep(.01)
-            gevent.sleep(0)
-            print "AI thinking: " + line
-            line = current_proc.stdout.readline().rstrip()
-    # for crafty
-    if current_game.ai == "Crafty":
-        while ("Black" not in line):
-            socketio.emit(
-                'echo',
-                {'echo': line})
-            print "AI thinking: " + line
-            line = current_proc.stdout.readline().rstrip()
-
-    # old logic to get moves from AI as coordinates
-    # cpu_line = line[-4:]
-    # cpu_line = list(cpu_line)
-    # cpu_line.insert(2, "-")
-    # cpu_line = "".join(cpu_line)
-    # pythondata = cpu_line
-
-    # new logic to get move from AI as SAN string
-    colon_index = line.index(":")
-    line_length = len(line)
-    pythondata = line[(colon_index + 2):(line_length)]
+    pythondata = get_move_from_ai(line, key_chars[current_game.ai])
     current_game.cpu_moves.append(pythondata)
 
     print"json_move: ", repr(pythondata)
