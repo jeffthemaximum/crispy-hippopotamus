@@ -16,6 +16,7 @@
         <a href="{{ url_for('main.chess') }}" class="btn btn-warning btn-lg" id="welcome-btn">Start playing chess!</a>
     {% else %}
         <a href="{{ url_for('auth.register') }}" class="btn btn-warning btn-lg" id="welcome-btn">Register to get started!</a>
+        <p>Or <a href="{{ url_for('auth.login') }}">login</a> if you've already signed up.</p>
     {% endif %}
 </div>
 <br>
