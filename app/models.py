@@ -234,6 +234,12 @@ class Game(db.Model):
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
             )
+        if self.ai == "Simontacchi":
+            os.chdir("/Users/jeff/Dropbox/projects/Simontacchi/src")
+            proc = subprocess.Popen(
+                './simontacchi',
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE)
         self.proc_pid = proc.pid
         print self.proc_pid
         return proc
