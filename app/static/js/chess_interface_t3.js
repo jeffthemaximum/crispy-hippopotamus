@@ -79,11 +79,11 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
             move_board(game);
 
             //save game state to db
-/*            $.get('/fen_to_db', {
+            $.get('/fen_to_db', {
                 fen_string: game.fen(),
                 game_id: game_id,
                 game_state: 'ongoing'
-            });*/
+            });
 
             console.log("cpumove: " + cpu_move);
             console.log("New position: " + game.fen());
@@ -104,7 +104,7 @@ var onDrop = function(source, target, piece, newPos, oldPos, orientation) {
 // do not pick up pieces if the game is over
 // only pick up pieces for White
 var onDragStart = function(source, piece, position, orientation) {
-    if (game.in_checkmate() === true || game.in_draw() === true || piece.search(/^b/) !== -1) {
+    if (game.in_checkmate() === true || game.in_draw() === true || piece.search(/^b/) !== -1 || truth == false) {
         return false;
     }
 };
@@ -200,7 +200,7 @@ $(document).ready(function(){
     game_id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
     $.get("/does_user_own_game/" + game_id, function(data){
-        var truth = $.parseJSON(data);
+        truth = $.parseJSON(data);
         console.log("truth: " + truth);
         if (truth === false) {
             cfg = set_viewer_config();
