@@ -269,9 +269,13 @@ def get_python_data():
     current_proc = get_current_proc(current_game)
     print "hello from AI"
 
+    # gets all lines printed by AI until keyword is found
     line = get_line_from_ai(keywords[current_game.ai], current_proc)
 
+    # gets move from AI
     pythondata = get_move_from_ai(line, key_chars[current_game.ai])
+
+    # append move to list of moves
     current_game.cpu_moves.append(pythondata)
 
     print"json_move: ", repr(pythondata)
