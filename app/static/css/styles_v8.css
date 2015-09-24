@@ -96,4 +96,6 @@ div#get-started {
     text-align: center;
 }
 
-
+textarea#thinking-output {
+    font-size: 8pt;
+}

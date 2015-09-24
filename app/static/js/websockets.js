@@ -1,23 +1,20 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 
+var updateList = function(line) {
+    $('#response').prepend('<li>' + line + "</li>");
+}
+
+var updateTextArea = function(line) {
+    var textBox = $("#thinking-output");
+    line = line + "\\\n";
+    textBox.val(line + textBox.val());
+}
 
 socket.on('echo', function(data){
     //console.log("socket: ", data.echo)
-    $('#response').prepend('<li>' + data.echo + "</li>");
+    updateList(data.echo);
+    updateTextArea(data.echo);
 });
-
-socket.on('test', function(data){
-    console.log("emit tester: " + data)
-})
-
-
-socket.on('cpu', function(data){
-    $('#response').html('<p>'+data.cpu+'</p>');
-});
-
-function send(){
-    socket.emit('send_message', {message : "hello, world"});
-}
 
 socket.on('connect', function() {
     socket.emit('echo', {message: "connected"});
